@@ -8,7 +8,12 @@ namespace Capstone.Classes
     {
         public Dictionary<string, Inventory> Stock { get; } =
             new Dictionary<string, Inventory>();
-        public Transaction Transaction { get; set; }
+        public Transaction Transaction { get; set; } = new Transaction();
+
+        public VendingMachine()
+        {
+            
+        }
 
         public void Vend()
         {
