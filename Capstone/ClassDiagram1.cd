@@ -9,6 +9,15 @@
   </Class>
   <Class Name="Capstone.Classes.Gum" Collapsed="true">
     <Position X="4.25" Y="5" Width="1.5" />
+    <InheritanceLine Type="Capstone.Classes.Product" ManuallyRouted="true">
+      <Path>
+        <Point X="4" Y="4.312" />
+        <Point X="4" Y="4.653" />
+        <Point X="4.692" Y="4.653" />
+        <Point X="4.692" Y="5.346" />
+        <Point X="4.25" Y="5.346" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAA=</HashCode>
       <FileName>Classes\Gum.cs</FileName>
@@ -33,6 +42,30 @@
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAA=</HashCode>
       <FileName>Classes\Candy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Capstone.Classes.VendingMachine" Collapsed="true">
+    <Position X="6.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAKAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\VendingMachine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Capstone.Classes.Transaction" Collapsed="true">
+    <Position X="8" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAAAAAAgAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\Transaction.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Capstone.Classes.Inventory" Collapsed="true">
+    <Position X="5.75" Y="2.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Events" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAQAAIAAAAgggAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\Inventory.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />
