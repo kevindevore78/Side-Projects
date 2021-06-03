@@ -20,6 +20,12 @@ namespace Capstone.Classes
         /// <returns></returns>
         public decimal FeedMoney(decimal amountEntered)
         {
+            if(amountEntered != 1 && amountEntered != 2 && 
+                amountEntered != 5 && amountEntered != 10)
+            {
+                Console.WriteLine("Enter an accepted $ amount.");
+                return 0.00M;
+            }
             return this.Balance += amountEntered;
         }
 
