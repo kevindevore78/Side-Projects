@@ -6,11 +6,17 @@ namespace Capstone.Classes
 {
     public class Transaction
     {
-        public decimal Balance { get; private set; }
+        public decimal Balance { get; private set; } = 0.00M;
 
-        public decimal FeedMoney()
+        /// <summary>
+        /// Enters the amount into the balance of
+        /// the current transaction
+        /// </summary>
+        /// <param name="amountEntered"></param>
+        /// <returns></returns>
+        public decimal FeedMoney(decimal amountEntered)
         {
-            return 0M;
+            return this.Balance += amountEntered;
         }
 
         public decimal MakeChange()
