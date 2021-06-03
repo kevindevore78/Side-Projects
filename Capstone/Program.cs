@@ -8,15 +8,17 @@ namespace Capstone
     {
         static void Main(string[] args)
         {
-            
+
             Chips one = new Chips("Cheetos", 1.00M);
-            Inventory inventory1 = new Inventory(one,5);
+            Inventory inventory1 = new Inventory(one, 5);
             VendingMachine myVendingMachine = new VendingMachine();
             myVendingMachine.Stock.Add("a1", inventory1);
             Chips two = new Chips("Lays", 1.50M);
             Inventory inventory2 = new Inventory(two, 5);
             myVendingMachine.Stock.Add("a2", inventory2);
-
+            Chips three = new Chips("Pringles", 2.00M);
+            Inventory inventory3 = new Inventory(three, 5);
+            myVendingMachine.Stock.Add("a3", inventory3);
 
 
 
@@ -29,18 +31,15 @@ namespace Capstone
                 string userSelection = Console.ReadLine();
                 Console.Clear();
 
-                // while(true)
-                //{
-
+                while (true)
 
                     if (userSelection == "1")
                     {
                         // Print all items with their quantity remaining
-                        //Console.WriteLine("Displaying Vending Machine Items in Inventory");
                         foreach (KeyValuePair<string, Inventory> saleItems in myVendingMachine.Stock)
                         {
-                            Console.WriteLine( saleItems.Value.Product.Name +" " +  "$"+ (saleItems.Value.Product.Price) + " quantity = " + saleItems.Value.Stock);
-                                                                             
+                            Console.WriteLine(saleItems.Value.Product.Name + " " + "$" + (saleItems.Value.Product.Price) + " quantity = " + saleItems.Value.Stock);
+
 
                         }
                         Console.WriteLine();
@@ -48,6 +47,7 @@ namespace Capstone
                         Console.WriteLine("Click 'Enter' to Continue");
                         Console.ReadLine();
                         Console.Clear();
+                        break;
                     }
 
                     else if (userSelection == "2")
@@ -64,18 +64,11 @@ namespace Capstone
 
                         if (purchaseSelection == "1")
                         {
-                            // Add Money to bank account -- bankaccount class tie
+                            // Add Money to bank account -- transaction class tie
                             Console.WriteLine("Please add $1, $2, $5, or $10 bills and press 'Enter'");
                             string moneyAdded = Console.ReadLine();
+                            myVendingMachine.Transaction.FeedMoney(decimal.Parse(moneyAdded));
                             Console.Clear();
-
-
-                            //if (moneyAdded != "1" || moneyAdded != "2" || moneyAdded != "5" || moneyAdded != "10")
-                            //{
-                            //    Console.WriteLine("Sorry please add one of the allowed denominations!");
-                            //    Console.ReadLine();
-                            //    Console.Clear();
-                            //}
 
                         }
                         else if (purchaseSelection == "2")
@@ -85,7 +78,7 @@ namespace Capstone
                             Console.WriteLine("(2) Candy");
                             Console.WriteLine("(3) Drinks");
                             Console.WriteLine("(4) Gum");
-                            Console.WriteLine("(5) Return to Main menu");
+                            Console.WriteLine("(5) Return to previous menu");
                             string productSelection = Console.ReadLine();
                             Console.Clear();
 
@@ -120,27 +113,41 @@ namespace Capstone
                             else if (productSelection == "5")
                             {
                                 //return to main menu
-
-
+                                
                             }
                         }
                         else if (purchaseSelection == "3")
                         {
                             //retrun to main menu
+                            //return change due 
+                            Console.WriteLine("Here is your change due in the appropiate coins!");
+                            Console.WriteLine();
+                            Console.WriteLine();
+                            Console.WriteLine("Press 'Enter' to return to the Main menu");
+                            Console.ReadLine();
+                            Console.Clear();
                             break;
                         }
 
-                        else if (userSelection == "3")
-                        {
-                            // Exit
-                            Console.WriteLine("Thank you for giving us your money");
-                            return;
-                        }
                     }
-                //}
+                    else if (userSelection == "3")
+                    {
+                        // Exit
+                        Console.WriteLine("Thank you for giving us your money");
+                        return;
+                    }
+                    else if (userSelection == "4")
+                    {
+                        Console.WriteLine("Hidden Menu to Display Transaction Log");
+                        Console.WriteLine();
+                        Console.WriteLine("Press 'Enter' to return to the Main menu");
+                        Console.ReadLine();
+                        Console.Clear();
+                        break;
+
+                    }
+
             }
-
-
         }
     }
 }
