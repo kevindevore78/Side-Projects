@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="Capstone.Classes.Product" Collapsed="true">
-    <Position X="3.25" Y="3.75" Width="1.5" />
+    <Position X="3" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAQAAAAAAAAAAAAQAAAAAAAAABAAAAAAAAAA=</HashCode>
       <FileName>Classes\Product.cs</FileName>
@@ -11,8 +11,8 @@
     <Position X="4.25" Y="5" Width="1.5" />
     <InheritanceLine Type="Capstone.Classes.Product" ManuallyRouted="true">
       <Path>
-        <Point X="4" Y="4.312" />
-        <Point X="4" Y="4.653" />
+        <Point X="3.75" Y="3.062" />
+        <Point X="3.75" Y="4.653" />
         <Point X="4.692" Y="4.653" />
         <Point X="4.692" Y="5.346" />
         <Point X="4.25" Y="5.346" />
@@ -64,7 +64,7 @@
       <Compartment Name="Events" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAAAAAAAQAAIAAAAgggAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAACAAAAAAAAAAAAQAAIAAAAgAgAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Classes\Inventory.cs</FileName>
     </TypeIdentifier>
   </Class>
