@@ -7,8 +7,6 @@ namespace Capstone.Classes
 {
     public class Inventory
     {
-        public event EventHandler Event;
-
         public Product Product { get; set; }
         public int Stock { get; set; }
         
