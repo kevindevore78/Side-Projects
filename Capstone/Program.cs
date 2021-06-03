@@ -15,55 +15,113 @@ namespace Capstone
                 string userSelection = Console.ReadLine();
                 Console.Clear();
 
-
-                if (userSelection == "1")
+                while (true)
                 {
-                    // Print all items with their quantity remaining
-                    Console.WriteLine("Display Vending Machine Items");
-                    Console.WriteLine("Click 'Enter' to Continue");
-                    Console.ReadLine();
-                    Console.Clear();
-                }
-                else if (userSelection == "2")
-                {
-                    // Guiding through the purchasing process menu
-                    Console.WriteLine("(1) Feed Money");
-                    Console.WriteLine("(2) Select Product");
-                    Console.WriteLine("(3) Finish Transaction");
-                    Console.WriteLine();
-                    Console.WriteLine("Current Money Provided: "); //Populate current balance = $0 to start 
-                    string purchaseSelection = Console.ReadLine();
-                    Console.Clear();
 
-                    if (purchaseSelection == "1")
+
+                    if (userSelection == "1")
                     {
-                        // Add Money to bank account
-                        Console.WriteLine("Please add $1, $2, $5, or $10 bills and press 'Enter'");
+                        // Print all items with their quantity remaining
+                        Console.WriteLine("Displaying Vending Machine Items in Inventory");
+                        Console.WriteLine();
+                        Console.WriteLine();
+                        Console.WriteLine("Click 'Enter' to Continue");
                         Console.ReadLine();
                         Console.Clear();
-                        
-                    }
-                    else if (purchaseSelection == "2")
-                    {
-                        // Select Product list populates
-                        Console.WriteLine("(1) Chips");
-                        Console.WriteLine("(2) Candy");
-                        Console.WriteLine("(3) Drinks");
-                        Console.WriteLine("(4) Gum");
-                        string productSelection = Console.ReadLine();
-                        Console.Clear();
-                    }
-                    else if (purchaseSelection == "3")
-                    {
-                        Console.WriteLine("Have you completed your transac");
                     }
 
-                }
-                else if (userSelection == "3")
-                {
-                    // Exit
-                    Console.WriteLine("Thank you for giving us your money");
-                    return;
+
+
+
+
+
+                    else if (userSelection == "2")
+                    {
+
+                        // Guiding through the purchasing process menu
+                        Console.WriteLine("(1) Feed Money");
+                        Console.WriteLine("(2) Select Product");
+                        Console.WriteLine("(3) Finish Transaction");
+                        Console.WriteLine();
+                        Console.WriteLine("Current Money Provided: "); //Populate current balance = $0 to start -- bankaccount class tie
+                        string purchaseSelection = Console.ReadLine();
+                        Console.Clear();
+
+                        if (purchaseSelection == "1")
+                        {
+                            // Add Money to bank account -- bankaccount class tie
+                            Console.WriteLine("Please add $1, $2, $5, or $10 bills and press 'Enter'");
+                            string moneyAdded = Console.ReadLine();
+                            Console.Clear();
+
+
+                            if (moneyAdded != "1" || moneyAdded != "2" || moneyAdded != "5" || moneyAdded != "10")
+                            {
+                                Console.WriteLine("Sorry please add one of the allowed denominations!");
+                                Console.ReadLine();
+                                Console.Clear();
+                            }
+
+                        }
+                        else if (purchaseSelection == "2")
+                        {
+                            // Select Product list populates
+                            Console.WriteLine("(1) Chips");
+                            Console.WriteLine("(2) Candy");
+                            Console.WriteLine("(3) Drinks");
+                            Console.WriteLine("(4) Gum");
+                            Console.WriteLine("(5) Return to Main menu");
+                            string productSelection = Console.ReadLine();
+                            Console.Clear();
+
+                            if (productSelection == "1")
+                            {
+                                // populate the list of chips available
+                                Console.WriteLine("Place holder for chip menu");
+                                Console.ReadLine();
+                                Console.Clear();
+                            }
+                            else if (productSelection == "2")
+                            {
+                                // populate the Candy available
+                                Console.WriteLine("Place holder for candy menu");
+                                Console.ReadLine();
+                                Console.Clear();
+                            }
+                            else if (productSelection == "3")
+                            {
+                                //populate the Drinks available 
+                                Console.WriteLine("Place holder for drinks available");
+                                Console.ReadLine();
+                                Console.Clear();
+                            }
+                            else if (productSelection == "4")
+                            {
+                                // populate gum available 
+                                Console.WriteLine("Place holder for gum");
+                                Console.ReadLine();
+                                Console.Clear();
+                            }
+                            else if (productSelection == "5")
+                            {
+                                //return to main menu
+
+
+                            }
+                        }
+                        else if (purchaseSelection == "3")
+                        {
+                            //retrun to main menu
+                            break;
+                        }
+
+                        else if (userSelection == "3")
+                        {
+                            // Exit
+                            Console.WriteLine("Thank you for giving us your money");
+                            return;
+                        }
+                    }
                 }
             }
 
