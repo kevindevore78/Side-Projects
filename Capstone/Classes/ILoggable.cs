@@ -7,6 +7,8 @@ namespace Capstone.Classes
 {
     public interface ILoggable
     {
+        public string LogFile { get; }
+
         public void Log(string logFile, string transactionType, decimal value1, decimal value2)
         {
             try

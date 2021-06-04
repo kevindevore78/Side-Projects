@@ -7,6 +7,7 @@ namespace Capstone.Classes
     public class Transaction: ILoggable
     {
         public decimal Balance { get; private set; } = 0.00M;
+        public string LogFile { get; }
         
         public Transaction()
         {
@@ -18,29 +19,45 @@ namespace Capstone.Classes
         /// </summary>
         /// <param name="amountEntered"></param>
         /// <returns></returns>
-        public decimal FeedMoney(decimal amountEntered)
+        public void FeedMoney(decimal amountEntered)
         {
             if(amountEntered != 1 && amountEntered != 2 && 
                 amountEntered != 5 && amountEntered != 10)
             {
                 Console.WriteLine("Enter an accepted $ amount.");
-                return 0.00M;
+                return;
             }
-            return this.Balance += amountEntered;
+            Log(this.LogFile, "FEED MONEY", amountEntered, this.Balance);
+            this.Balance += amountEntered;
         }
 
-        public void MakeSale(decimal costOfItem)
+        /// <summary>
+        /// Takes money out of the users balance
+        /// </summary>
+        /// <param name="costOfItem"></param>
+        public bool MakeSale(decimal costOfItem)
         {
-            this.Balance -= costOfItem;
+            if(this.Balance >= costOfItem)
+            {
+                this.Balance -= costOfItem;
+                return true;
+            }
+            return false;
         }
 
-        public decimal MakeChange()
+        /// <summary>
+        /// Returns the money left in the balance
+        /// to the user
+        /// </summary>
+        /// <returns></returns>
+        public void MakeChange()
         {
-            return 0M;
+            Log(this.LogFile, "GIVE CHANGE", this.Balance, 0.00M);
         }
 
         public void Log(string logFile, string transactionType, decimal value1, decimal value2)
         {
+
         }
 
 
