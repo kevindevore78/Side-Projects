@@ -11,9 +11,9 @@ namespace Capstone.Classes
 
         }
 
-        public override void Sound()
+        public override string Sound()
         {
-            Console.WriteLine("Crunch Crunch, Yum!");
+            return "Crunch Crunch, Yum!";
         }
     }
 }

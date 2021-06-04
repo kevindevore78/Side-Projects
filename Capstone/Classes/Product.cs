@@ -22,6 +22,6 @@ namespace Capstone.Classes
             this.TypeName = typeName;
         }
 
-        public abstract void Sound();
+        public abstract string Sound();
     }
 }
