@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.IO;
 
 namespace Capstone.Classes
 {
@@ -19,11 +18,6 @@ namespace Capstone.Classes
         public void Sell()
         {
             
-        }
-
-        public void Restock()
-        {
-
         }
 
         public void Log()

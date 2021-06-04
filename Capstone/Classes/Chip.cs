@@ -4,9 +4,9 @@ using System.Text;
 
 namespace Capstone.Classes
 {
-    public class Chips : Product
+    public class Chip : Product
     {
-        public Chips(string name, decimal price) : base(name, price)
+        public Chip(string name, decimal price) : base(name, price)
         {
 
         }
