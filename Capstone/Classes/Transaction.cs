@@ -47,13 +47,33 @@ namespace Capstone.Classes
         }
 
         /// <summary>
-        /// Returns the money left in the balance
+        ///Returns the money left in the balance
         /// to the user
         /// </summary>
-        /// <returns></returns>
-        public void MakeChange()
+        /// <returns>Returns an int array where
+        /// [0] is quarters
+        /// [1] is dimes
+        /// [2] is nickels</returns>
+        public int[] MakeChange()
         {
+
             Logger.Log("GIVE CHANGE", this.Balance, 0.00M);
+
+            int[] changeInQuartersDimesNickels = new int[3];
+
+            decimal quarters = this.Balance / 0.25M;
+            changeInQuartersDimesNickels[0] = (int)Math.Round(quarters, 0);
+            this.Balance = this.Balance - changeInQuartersDimesNickels[0];
+
+            decimal dimes = this.Balance / 0.10M;
+            changeInQuartersDimesNickels[1] = (int)Math.Round(dimes, 0);
+            this.Balance = this.Balance - changeInQuartersDimesNickels[1];
+
+            decimal nickels = this.Balance / 0.05M;
+            changeInQuartersDimesNickels[2] = (int)Math.Round(nickels, 0);
+            this.Balance = this.Balance - changeInQuartersDimesNickels[2];
+
+            return changeInQuartersDimesNickels;
         }
     }
 }

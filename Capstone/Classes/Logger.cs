@@ -9,6 +9,12 @@ namespace Capstone.Classes
     {
         public static string logFile = Path.Combine(Directory.GetCurrentDirectory(), "logFile.txt");
 
+        /// <summary>
+        ///A static method that 
+        /// </summary>
+        /// <param name="transactionType"></param>
+        /// <param name="value1"></param>
+        /// <param name="value2"></param>
         public static void Log(string transactionType, decimal value1, decimal value2)
         {
             try
@@ -25,6 +31,10 @@ namespace Capstone.Classes
             }
         }
 
+        /// <summary>
+        /// Returns the log file as a string
+        /// </summary>
+        /// <returns>string</returns>
         public static string ReturnLog()
         {
             try
