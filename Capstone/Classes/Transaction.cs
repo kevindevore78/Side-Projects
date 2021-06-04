@@ -61,17 +61,17 @@ namespace Capstone.Classes
 
             int[] changeInQuartersDimesNickels = new int[3];
 
-            decimal quarters = this.Balance / 0.25M;
+            decimal quarters = this.Balance / 0.25M; 
             changeInQuartersDimesNickels[0] = (int)Math.Round(quarters, 0);
-            this.Balance = this.Balance - changeInQuartersDimesNickels[0];
+            this.Balance = this.Balance - (quarters * 0.25M);
 
             decimal dimes = this.Balance / 0.10M;
             changeInQuartersDimesNickels[1] = (int)Math.Round(dimes, 0);
-            this.Balance = this.Balance - changeInQuartersDimesNickels[1];
+            this.Balance = this.Balance - (dimes * 0.10M);
 
             decimal nickels = this.Balance / 0.05M;
             changeInQuartersDimesNickels[2] = (int)Math.Round(nickels, 0);
-            this.Balance = this.Balance - changeInQuartersDimesNickels[2];
+            this.Balance = this.Balance - (nickels * 0.05M);
 
             return changeInQuartersDimesNickels;
         }
