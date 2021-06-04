@@ -8,16 +8,18 @@ namespace Capstone.Classes
     {
         public string Name { get; set; }
         public decimal Price { get; private set; }
+        public string TypeName { get; set; }
 
         /// <summary>
         /// Constructs a product Class with a name and price
         /// </summary>
         /// <param name="name">string</param>
         /// <param name="price">In decimal value</param>
-        public Product(string name, decimal price)
+        public Product(string name, decimal price, string typeName)
         {
             this.Name = name;
             this.Price = price;
+            this.TypeName = typeName;
         }
 
         public abstract void Sound();

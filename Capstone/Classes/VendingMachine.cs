@@ -35,25 +35,25 @@ namespace Capstone.Classes
 
                         if(restockInfo[3] == "Chip")
                         {
-                            Chip chip = new Chip(restockInfo[1], decimal.Parse(restockInfo[2]));
+                            Chip chip = new Chip(restockInfo[1], decimal.Parse(restockInfo[2]), "Chip");
                             Inventory inventory = new Inventory(chip, 5);
                             this.Stock.Add(restockInfo[0], inventory);
                         }
                         else if (restockInfo[3] == "Candy")
                         {
-                            Candy candy = new Candy(restockInfo[1], decimal.Parse(restockInfo[2]));
+                            Candy candy = new Candy(restockInfo[1], decimal.Parse(restockInfo[2]), "Candy");
                             Inventory inventory = new Inventory(candy, 5);
                             this.Stock.Add(restockInfo[0], inventory);
                         }
                         else if (restockInfo[3] == "Drink")
                         {
-                            Drink drink = new Drink(restockInfo[1], decimal.Parse(restockInfo[2]));
+                            Drink drink = new Drink(restockInfo[1], decimal.Parse(restockInfo[2]), "Drink");
                             Inventory inventory = new Inventory(drink, 5);
                             this.Stock.Add(restockInfo[0], inventory);
                         }
                         else if (restockInfo[3] == "Gum")
                         {
-                            Gum gum = new Gum(restockInfo[1], decimal.Parse(restockInfo[2]));
+                            Gum gum = new Gum(restockInfo[1], decimal.Parse(restockInfo[2]), "Gum");
                             Inventory inventory = new Inventory(gum, 5);
                             this.Stock.Add(restockInfo[0], inventory);
                         }

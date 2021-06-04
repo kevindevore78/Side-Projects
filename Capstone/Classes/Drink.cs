@@ -6,7 +6,7 @@ namespace Capstone.Classes
 {
     public class Drink : Product
     {
-        public Drink(string name, decimal price) : base(name, price)
+        public Drink(string name, decimal price, string typeName) : base(name, price, typeName)
         {
 
         }
