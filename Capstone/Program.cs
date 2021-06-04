@@ -10,13 +10,13 @@ namespace Capstone
         static void Main(string[] args)
         {
             VendingMachine myVendingMachine = new VendingMachine();
-            Chip one = new Chip("Cheetos", 1.00M);
-            Inventory inventory1 = new Inventory(one, 5);
+            Chip one = new Chip("Cheetos", 1.00M, "Chip");
+            Inventory inventory1 = new Inventory(one, 0);
             myVendingMachine.Stock.Add("a1", inventory1);
-            Chip two = new Chip("Lays", 1.50M);
+            Chip two = new Chip("Lays", 1.50M, "Chip");
             Inventory inventory2 = new Inventory(two, 5);
             myVendingMachine.Stock.Add("a2", inventory2);
-            Chip three = new Chip("Pringles", 2.00M);
+            Chip three = new Chip("Pringles", 2.00M, "Chip");
             Inventory inventory3 = new Inventory(three, 5);
             myVendingMachine.Stock.Add("a3", inventory3);   // Need to display slot number
 
@@ -89,11 +89,22 @@ namespace Capstone
                             Console.WriteLine();
                             Console.CursorLeft = 60;
                             string moneyAdded = Console.ReadLine(); // Where money is entered
-                            //if ((moneyAdded == )
-                            //{
-                            //    myVendingMachine.Transaction.FeedMoney(decimal.Parse(moneyAdded)); // Error if 'Enter' is pressed and no number is entered
-                            //}
-                            myVendingMachine.Transaction.FeedMoney(decimal.Parse(moneyAdded)); // Error if 'Enter' is pressed and no number is entered
+                            Console.WriteLine();
+                            if ((moneyAdded == "1") || (moneyAdded == "2") || (moneyAdded == "5") || (moneyAdded == "10") )
+                            {
+                                Console.CursorLeft = 55;
+                                Console.WriteLine("Thank you!");
+                                myVendingMachine.Transaction.FeedMoney(decimal.Parse(moneyAdded)); // Adds money to transaction if correct $ amount
+                                Console.ReadLine();
+                                Console.Clear();
+                            }
+                            else if ((moneyAdded != "1") || (moneyAdded != "2") || (moneyAdded != "5") || (moneyAdded != "10"))
+                            {
+                                Console.CursorLeft = 45;
+                                Console.WriteLine("Please add correct dollar amount!!"); // Tells user they added wrong dollar amount
+                                Console.ReadLine();
+
+                            }                         
                             Console.Clear();
 
                         }
@@ -122,14 +133,28 @@ namespace Capstone
 
                             if (productSelection == "1")
                             {
+                                
                                 // populate the list of chips available
                                 Console.WriteLine(vendHeader); // Generates header
                                 Console.CursorLeft = 45;
                                 Console.WriteLine($"Current Balance: {myVendingMachine.Transaction.Balance}"); // gets customer balance and displays
                                 Console.WriteLine();
                                 Console.CursorLeft = 45;
-                                Console.WriteLine("Place holder for chip menu");
-
+                                foreach (KeyValuePair<string, Inventory> saleItems in myVendingMachine.Stock) // Adds Chips to the chip menu
+                                {
+                                    if(saleItems.Value.Product.TypeName == "Chip" && saleItems.Value.Stock >= 1)
+                                    {
+                                        Console.CursorLeft = 45;
+                                        Console.WriteLine(saleItems.Key.Substring(0) + " | " + saleItems.Value.Product.Name + " | " + "$" + saleItems.Value.Product.Price + " | quantity = " + saleItems.Value.Stock);
+                                    }
+                                    if (saleItems.Value.Product.TypeName == "Chip" && saleItems.Value.Stock == 0)
+                                    {
+                                        Console.CursorLeft = 45;
+                                        Console.WriteLine(saleItems.Key.Substring(0) + " | " + saleItems.Value.Product.Name + " | " + "$" + (saleItems.Value.Product.Price) + "| Sold Out ");
+                                    }
+                                    
+                                }
+                                Console.CursorLeft = 45;
                                 Console.ReadLine();
                                 Console.Clear();
                             }
@@ -141,7 +166,20 @@ namespace Capstone
                                 Console.WriteLine($"Current Balance: {myVendingMachine.Transaction.Balance}"); // gets customer balance and displays
                                 Console.WriteLine();
                                 Console.CursorLeft = 45;
-                                Console.WriteLine("Place holder for candy menu");
+                                foreach (KeyValuePair<string, Inventory> saleItems in myVendingMachine.Stock) // Adds Candy to the machine
+                                {
+                                    if (saleItems.Value.Product.TypeName == "Candy" && saleItems.Value.Stock >= 1)
+                                    {
+                                        Console.CursorLeft = 45;
+                                        Console.WriteLine(saleItems.Key.Substring(0) + " | " + saleItems.Value.Product.Name + " | " + "$" + (saleItems.Value.Product.Price) + " | quantity = " + saleItems.Value.Stock);
+                                    }
+                                    if (saleItems.Value.Product.TypeName == "Candy" && saleItems.Value.Stock == 0)
+                                    {
+                                        Console.CursorLeft = 45;
+                                        Console.WriteLine(saleItems.Key.Substring(0) + " | " + saleItems.Value.Product.Name + " | " + "$" + (saleItems.Value.Product.Price) + "| Sold Out ");
+                                    }
+
+                                }
                                 Console.CursorLeft = 45;
                                 Console.ReadLine();
                                 Console.Clear();
@@ -154,7 +192,21 @@ namespace Capstone
                                 Console.WriteLine($"Current Balance: {myVendingMachine.Transaction.Balance}"); // gets customer balance and displays
                                 Console.WriteLine();
                                 Console.CursorLeft = 45;
-                                Console.WriteLine("Place holder for drinks available");
+                                foreach (KeyValuePair<string, Inventory> saleItems in myVendingMachine.Stock) // Adds Drinks to the machine
+                                {
+                                    if (saleItems.Value.Product.TypeName == "Drink" && saleItems.Value.Stock >= 1)
+                                    {
+                                        Console.CursorLeft = 45;
+                                        Console.WriteLine(saleItems.Key.Substring(0) + " | " + saleItems.Value.Product.Name + " | " + "$" + (saleItems.Value.Product.Price) + " | quantity = " + saleItems.Value.Stock);
+                                    }
+                                    if (saleItems.Value.Product.TypeName == "Drink" && saleItems.Value.Stock == 0)
+                                    {
+                                        Console.CursorLeft = 45;
+                                        Console.WriteLine(saleItems.Key.Substring(0) + " | " + saleItems.Value.Product.Name + " | " + "$" + (saleItems.Value.Product.Price) + "| Sold Out ");
+                                    }
+
+                                }
+                                Console.CursorLeft = 45;
                                 Console.ReadLine();
                                 Console.Clear();
                             }
@@ -165,8 +217,22 @@ namespace Capstone
                                 Console.CursorLeft = 45;
                                 Console.WriteLine($"Current Balance: {myVendingMachine.Transaction.Balance}"); // gets customer balance and displays
                                 Console.WriteLine();
+                                Console.CursorLeft = 45;                            
+                                foreach (KeyValuePair<string, Inventory> saleItems in myVendingMachine.Stock) // Adds gum to the machine
+                                {
+                                    if (saleItems.Value.Product.TypeName == "Gum" && saleItems.Value.Stock >= 1)
+                                    {
+                                        Console.CursorLeft = 45;
+                                        Console.WriteLine(saleItems.Key.Substring(0) + " | " + saleItems.Value.Product.Name + " | " + "$" + (saleItems.Value.Product.Price) + " | quantity = " + saleItems.Value.Stock);
+                                    }
+                                    if (saleItems.Value.Product.TypeName == "Gum" && saleItems.Value.Stock == 0)
+                                    {
+                                        Console.CursorLeft = 45;
+                                        Console.WriteLine(saleItems.Key.Substring(0) + " | " + saleItems.Value.Product.Name + " | " + "$" + (saleItems.Value.Product.Price) + "| Sold Out ");
+                                    }
+
+                                }
                                 Console.CursorLeft = 45;
-                                Console.WriteLine("Place holder for gum");
                                 Console.ReadLine();
                                 Console.Clear();
                             }
