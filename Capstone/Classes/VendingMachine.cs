@@ -83,7 +83,7 @@ namespace Capstone.Classes
         /// ex. A1, B2, C3
         /// </summary>
         /// <param name="slotLocation"></param>
-        public void Vend(string slotLocation)
+        public bool Vend(string slotLocation)
         {
             foreach(KeyValuePair<string, Inventory> kvp in this.Stock)
             {
@@ -95,9 +95,10 @@ namespace Capstone.Classes
                         (kvp.Value.Product + " " + kvp.Key),
                         (this.Transaction.Balance),
                         (this.Transaction.Balance - kvp.Value.Product.Price));
-                    this.Transaction.MakeSale(kvp.Value.Product.Price);
+                    return this.Transaction.MakeSale(kvp.Value.Product.Price);
                 }
             }
+            return false;
         }
 
         public void Log(string logFile, string transactionType, decimal value1, decimal value2)
