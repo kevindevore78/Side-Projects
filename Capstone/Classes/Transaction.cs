@@ -29,6 +29,11 @@ namespace Capstone.Classes
             return this.Balance += amountEntered;
         }
 
+        public void MakeSale(decimal costOfItem)
+        {
+            this.Balance -= costOfItem;
+        }
+
         public decimal MakeChange()
         {
             return 0M;

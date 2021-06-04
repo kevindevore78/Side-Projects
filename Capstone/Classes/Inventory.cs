@@ -6,8 +6,8 @@ namespace Capstone.Classes
 {
     public class Inventory
     {
-        public Product Product { get; set; }
-        public int Stock { get; set; }
+        public Product Product { get; private set; }
+        public int Stock { get; private set; }
         
         public Inventory(Product product, int stock)
         {
@@ -15,14 +15,9 @@ namespace Capstone.Classes
             this.Stock = stock;
         }
 
-        public void Sell()
+        public void LowerStock()
         {
-            
-        }
-
-        public void Log()
-        {
-
-        }
+            this.Stock--;
+        } 
     }
 }

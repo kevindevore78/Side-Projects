@@ -67,7 +67,19 @@ namespace Capstone.Classes
             }
         }
 
-        public void Vend()
+        public void Vend(string slotLocation)
+        {
+            foreach(KeyValuePair<string, Inventory> kvp in this.Stock)
+            {
+                if(slotLocation == kvp.Key)
+                {
+                    kvp.Value.LowerStock();
+                    this.Transaction.MakeSale(kvp.Value.Product.Price);
+                }
+            }
+        }
+
+        public void Log()
         {
 
         }
