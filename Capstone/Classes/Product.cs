@@ -22,6 +22,11 @@ namespace Capstone.Classes
             this.TypeName = typeName;
         }
 
+        /// <summary>
+        /// As abstract method that returns the given products
+        /// sound it makes
+        /// </summary>
+        /// <returns>A string of the sound the food makes</returns>
         public abstract string Sound();
     }
 }

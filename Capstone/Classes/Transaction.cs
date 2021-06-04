@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Capstone.Classes
 {
-    public class Transaction: ILoggable
+    public class Transaction
     {
         public decimal Balance { get; private set; } = 0.00M;
         public string LogFile { get; }
@@ -27,7 +27,7 @@ namespace Capstone.Classes
                 Console.WriteLine("Enter an accepted $ amount.");
                 return;
             }
-            Log(this.LogFile, "FEED MONEY", amountEntered, this.Balance);
+            Logger.Log("FEED MONEY", amountEntered, this.Balance);
             this.Balance += amountEntered;
         }
 
@@ -53,14 +53,7 @@ namespace Capstone.Classes
         /// <returns></returns>
         public void MakeChange()
         {
-            Log(this.LogFile, "GIVE CHANGE", this.Balance, 0.00M);
+            Logger.Log("GIVE CHANGE", this.Balance, 0.00M);
         }
-
-        public void Log(string logFile, string transactionType, decimal value1, decimal value2)
-        {
-
-        }
-
-
     }
 }

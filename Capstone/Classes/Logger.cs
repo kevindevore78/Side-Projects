@@ -5,11 +5,11 @@ using System.IO;
 
 namespace Capstone.Classes
 {
-    public interface ILoggable
+    public static class Logger
     {
-        public string LogFile { get; }
+        public static string logFile = Path.Combine(Directory.GetCurrentDirectory(), "logFile.txt");
 
-        public void Log(string logFile, string transactionType, decimal value1, decimal value2)
+        public static void Log(string transactionType, decimal value1, decimal value2)
         {
             try
             {

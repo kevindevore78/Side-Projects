@@ -5,18 +5,34 @@ using System.IO;
 
 namespace Capstone.Classes
 {
-    public class VendingMachine: ILoggable
+    public class VendingMachine
     {
         public Dictionary<string, Inventory> Stock { get; private set; } =
             new Dictionary<string, Inventory>();
         public Transaction Transaction { get; private set; } = new Transaction();
-        public string LogFile { get; private set; } = "logFile.txt";
 
+        /// <summary>
+        /// Constructs a Vending machine object and also
+        /// creates a logfile.txt for logging
+        /// </summary>
         public VendingMachine()
         {
-            
+            string filePath = Logger.logFile;
+            try
+            {
+                using(StreamWriter writer = new StreamWriter(filePath)) { }
+            }
+            catch
+            {
+                Console.WriteLine("Failed to create a log file.");
+            }
         }
 
+        /// <summary>
+        /// Returns a list of the possible selection slots
+        /// for the vending machine
+        /// </summary>
+        /// <returns>List of string</returns>
         public List<string> ReturnPossibleSlots()
         {
             List<string> listToReturn = new List<string>();
@@ -90,8 +106,7 @@ namespace Capstone.Classes
                 if(slotLocation == kvp.Key)
                 {
                     kvp.Value.LowerStock();
-                    this.Log(
-                        this.LogFile,
+                    Logger.Log(
                         (kvp.Value.Product + " " + kvp.Key),
                         (this.Transaction.Balance),
                         (this.Transaction.Balance - kvp.Value.Product.Price));
@@ -99,10 +114,6 @@ namespace Capstone.Classes
                 }
             }
             return false;
-        }
-
-        public void Log(string logFile, string transactionType, decimal value1, decimal value2)
-        {
         }
     }
 }
