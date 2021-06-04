@@ -18,13 +18,13 @@ namespace Capstone
             myVendingMachine.Stock.Add("a2", inventory2);
             Chips three = new Chips("Pringles", 2.00M);
             Inventory inventory3 = new Inventory(three, 5);
-            myVendingMachine.Stock.Add("a3", inventory3);
+            myVendingMachine.Stock.Add("a3", inventory3);   // Need to display slot number
 
 
             while (true)
             {
-                string vendHeader = FiggleFonts.Standard.Render("                   Vend Master 5000");
-
+                string vendHeader = FiggleFonts.Standard.Render("                    Vendo-Matic 800");
+                // Creation of main menu
                 Console.WriteLine(vendHeader);
                 Console.CursorLeft = 45;
                 Console.WriteLine("(1) Vending Machine Items");
@@ -45,7 +45,7 @@ namespace Capstone
                         foreach (KeyValuePair<string, Inventory> saleItems in myVendingMachine.Stock)
                         {
                             Console.CursorLeft = 45;
-                            Console.WriteLine(saleItems.Value.Product.Name + " " + "$" + (saleItems.Value.Product.Price) + " quantity = " + saleItems.Value.Stock);
+                            Console.WriteLine(saleItems.Value.Product.Name + " | " + "$" + (saleItems.Value.Product.Price) + " | quantity = " + saleItems.Value.Stock);
 
                         }
 
@@ -72,7 +72,7 @@ namespace Capstone
                         Console.CursorLeft = 45;
                         Console.WriteLine();
                         Console.CursorLeft = 45;
-                        Console.WriteLine($"Current Balance: {myVendingMachine.Transaction.Balance}"); //Populate current balance = $0 to start -- bankaccount class tie
+                        Console.WriteLine($"Current Balance: {myVendingMachine.Transaction.Balance}"); //Populate current balance = $0 to start -- transaction class tie
                         Console.WriteLine();
                         Console.CursorLeft = 55;
                         string purchaseSelection = Console.ReadLine();
@@ -80,7 +80,7 @@ namespace Capstone
 
                         if (purchaseSelection == "1")
                         {
-                            // Add Money to bank account -- transaction class tie
+                            // Add Money to transaction class -- transaction class tie
                             Console.WriteLine(vendHeader);
                             Console.CursorLeft = 35;
                             Console.WriteLine("Please add $1, $2, $5, or $10 bills and press 'Enter'");
@@ -97,6 +97,7 @@ namespace Capstone
                         else if (purchaseSelection == "2")
                         {
                             // Select Product list populates
+                            // User can select an option. The users balance follows through out
                             Console.WriteLine(vendHeader);
                             Console.CursorLeft = 45;
                             Console.WriteLine("(1) Chips");
@@ -121,6 +122,9 @@ namespace Capstone
                                 // populate the list of chips available
                                 Console.WriteLine(vendHeader);
                                 Console.CursorLeft = 45;
+                                Console.WriteLine($"Current Balance: {myVendingMachine.Transaction.Balance}");
+                                Console.WriteLine();
+                                Console.CursorLeft = 45;
                                 Console.WriteLine("Place holder for chip menu");
                                 Console.ReadLine();
                                 Console.Clear();
@@ -129,6 +133,9 @@ namespace Capstone
                             {
                                 // populate the Candy available
                                 Console.WriteLine(vendHeader);
+                                Console.CursorLeft = 45;
+                                Console.WriteLine($"Current Balance: {myVendingMachine.Transaction.Balance}");
+                                Console.WriteLine();
                                 Console.CursorLeft = 45;
                                 Console.WriteLine("Place holder for candy menu");
                                 Console.ReadLine();
@@ -139,6 +146,9 @@ namespace Capstone
                                 //populate the Drinks available 
                                 Console.WriteLine(vendHeader);
                                 Console.CursorLeft = 45;
+                                Console.WriteLine($"Current Balance: {myVendingMachine.Transaction.Balance}");
+                                Console.WriteLine();
+                                Console.CursorLeft = 45;
                                 Console.WriteLine("Place holder for drinks available");
                                 Console.ReadLine();
                                 Console.Clear();
@@ -148,13 +158,16 @@ namespace Capstone
                                 // populate gum available 
                                 Console.WriteLine(vendHeader);
                                 Console.CursorLeft = 45;
+                                Console.WriteLine($"Current Balance: {myVendingMachine.Transaction.Balance}");
+                                Console.WriteLine();
+                                Console.CursorLeft = 45;
                                 Console.WriteLine("Place holder for gum");
                                 Console.ReadLine();
                                 Console.Clear();
                             }
                             else if (productSelection == "5")
                             {
-                                //return to main menu
+                                //return to purchasing menu
 
                             }
                         }
@@ -178,13 +191,14 @@ namespace Capstone
                     }
                     else if (userSelection == "3")
                     {
-                        // Exit
+                        // Exit program
                         string ending = FiggleFonts.Tombstone.Render("Thanks for giving us your money!");
                         Console.WriteLine(ending);
                         return;
                     }
                     else if (userSelection == "4")
                     {
+                        // Hidden menu that displays all transactions 
                         Console.WriteLine(vendHeader);
                         Console.CursorLeft = 45;
                         Console.WriteLine("Hidden Menu to Display Transaction Log");
@@ -196,7 +210,7 @@ namespace Capstone
                         break;
 
                     }
-                    else if ((userSelection!= "1")||(userSelection!= "2")|| (userSelection != "3")||(userSelection!="4"))
+                    else if ((userSelection!= "1")||(userSelection!= "2")|| (userSelection != "3")||(userSelection!="4")) //Logic to avoid entering invalid choice
                     {
                         break;
                     }
