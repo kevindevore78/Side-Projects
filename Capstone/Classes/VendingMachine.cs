@@ -107,7 +107,7 @@ namespace Capstone.Classes
                 {
                     kvp.Value.LowerStock();
                     Logger.Log(
-                        (kvp.Value.Product + " " + kvp.Key),
+                        (kvp.Value.Product.Name + " " + kvp.Key),
                         (this.Transaction.Balance),
                         (this.Transaction.Balance - kvp.Value.Product.Price));
                     return this.Transaction.MakeSale(kvp.Value.Product.Price);
