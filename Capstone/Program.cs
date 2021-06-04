@@ -158,19 +158,30 @@ namespace Capstone
                                 }
                                 string itemSelection = Console.ReadLine();
                                 List<string> possibleSlots = myVendingMachine.ReturnPossibleSlots();
+                                // If the user has entered a valid slot 
                                 if (possibleSlots.Contains(itemSelection))
                                 {
-                                    if (myVendingMachine.Transaction.Balance < myVendingMachine.Stock[itemSelection].Product.Price)
+
+                                   // If the item is in stock
+                                    if (myVendingMachine.Stock[itemSelection].Stock > 0)
                                     {
-                                        Console.WriteLine("Please add more funds for this transaction");
-                                        Console.ReadLine();
+                                        bool saleMade = myVendingMachine.Transaction.MakeSale(myVendingMachine.Stock[itemSelection].Product.Price);
+                                        if(saleMade == true)
+                                        {
+                                            myVendingMachine.Transaction.MakeSale(myVendingMachine.Stock[itemSelection].Product.Price);
+                                            itemSelection1.Vend(itemSelection.ToUpper());
+                                            Console.WriteLine();
+                                            Console.ReadLine();
+                                        }
+                                        else if (saleMade == false)
+                                        {
+                                            Console.WriteLine("Please add more funds to purchase this product");
+                                        }
+                                        
                                     }
-                                    else if (myVendingMachine.Transaction.Balance > myVendingMachine.Stock[itemSelection].Product.Price && myVendingMachine.Stock[itemSelection].Stock > 0)
+                                    else
                                     {
-                                        myVendingMachine.Transaction.MakeSale(myVendingMachine.Stock[itemSelection].Product.Price); 
-                                        itemSelection1.Vend(itemSelection.ToUpper());
-                                        Console.WriteLine();
-                                        Console.ReadLine();
+                                        Console.WriteLine("Please make another selection");
                                     }
                                     
                                
