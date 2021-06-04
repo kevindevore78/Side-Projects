@@ -35,6 +35,7 @@ namespace Capstone.Classes
         /// Takes money out of the users balance
         /// </summary>
         /// <param name="costOfItem"></param>
+        /// <returns>bool</returns>
         public bool MakeSale(decimal costOfItem)
         {
             if(this.Balance >= costOfItem)
