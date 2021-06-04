@@ -24,5 +24,20 @@ namespace Capstone.Classes
                 Console.WriteLine("Unable to write to file.");
             }
         }
+
+        public static string ReturnLog()
+        {
+            try
+            {
+                using(StreamReader reader = new StreamReader(logFile))
+                {
+                    return reader.ReadToEnd();
+                }
+            }
+            catch(Exception ex)
+            {
+                return "Failed to return log file.";
+            }
+        }
     }
 }
