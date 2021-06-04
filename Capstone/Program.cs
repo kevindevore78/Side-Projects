@@ -10,15 +10,7 @@ namespace Capstone
         static void Main(string[] args)
         {
             VendingMachine myVendingMachine = new VendingMachine();
-            Chip one = new Chip("Cheetos", 1.00M, "Chip");
-            Inventory inventory1 = new Inventory(one, 0);
-            myVendingMachine.Stock.Add("a1", inventory1);
-            Chip two = new Chip("Lays", 1.50M, "Chip");
-            Inventory inventory2 = new Inventory(two, 5);
-            myVendingMachine.Stock.Add("a2", inventory2);
-            Chip three = new Chip("Pringles", 2.00M, "Chip");
-            Inventory inventory3 = new Inventory(three, 5);
-            myVendingMachine.Stock.Add("a3", inventory3);   // Need to display slot number
+            myVendingMachine.Restock(@"C:\Users\Student\git\dotnet-capstone-1-team-3\vendingmachine.csv"); // Install Items dictionary
 
             VendingMachine itemSelection1 = new VendingMachine();
 
@@ -48,7 +40,6 @@ namespace Capstone
                         {
                             Console.CursorLeft = 45;
                             Console.WriteLine(saleItems.Key.Substring(0) + " | " + saleItems.Value.Product.Name + " | " + "$" + (saleItems.Value.Product.Price) + " | quantity = " + saleItems.Value.Stock);
-                            
                         }
                         Console.WriteLine();
                         Console.WriteLine();
@@ -92,7 +83,7 @@ namespace Capstone
                             Console.CursorLeft = 60;
                             string moneyAdded = Console.ReadLine(); // Where money is entered
                             Console.WriteLine();
-                            if ((moneyAdded == "1") || (moneyAdded == "2") || (moneyAdded == "5") || (moneyAdded == "10") )
+                            if ((moneyAdded == "1") || (moneyAdded == "2") || (moneyAdded == "5") || (moneyAdded == "10"))
                             {
                                 Console.CursorLeft = 55;
                                 Console.WriteLine("Thank you!");
@@ -106,9 +97,8 @@ namespace Capstone
                                 Console.WriteLine("Please add correct dollar amount!!"); // Tells user they added wrong dollar amount
                                 Console.ReadLine();
 
-                            }                         
+                            }
                             Console.Clear();
-
                         }
                         else if (purchaseSelection == "2")
                         {
@@ -135,7 +125,7 @@ namespace Capstone
 
                             if (productSelection == "1")
                             {
-                                
+
                                 // populate the list of chips available
                                 Console.WriteLine(vendHeader); // Generates header
                                 Console.CursorLeft = 45;
@@ -144,7 +134,7 @@ namespace Capstone
                                 Console.CursorLeft = 45;
                                 foreach (KeyValuePair<string, Inventory> saleItems in myVendingMachine.Stock) // Adds Chips to the chip menu
                                 {
-                                    if(saleItems.Value.Product.TypeName == "Chip" && saleItems.Value.Stock >= 1)
+                                    if (saleItems.Value.Product.TypeName == "Chip" && saleItems.Value.Stock >= 1)
                                     {
                                         Console.CursorLeft = 45;
                                         Console.WriteLine(saleItems.Key.Substring(0) + " | " + saleItems.Value.Product.Name + " | " + "$" + saleItems.Value.Product.Price + " | quantity = " + saleItems.Value.Stock);
@@ -154,40 +144,57 @@ namespace Capstone
                                         Console.CursorLeft = 45;
                                         Console.WriteLine(saleItems.Key.Substring(0) + " | " + saleItems.Value.Product.Name + " | " + "$" + (saleItems.Value.Product.Price) + "| Sold Out ");
                                     }
-                                    
+
                                 }
-                                string itemSelection = Console.ReadLine();
+                                Console.CursorLeft = 45;
+                                string itemSelection = Console.ReadLine().ToUpper();
                                 List<string> possibleSlots = myVendingMachine.ReturnPossibleSlots();
                                 // If the user has entered a valid slot 
                                 if (possibleSlots.Contains(itemSelection))
                                 {
 
-                                   // If the item is in stock
+                                    // If the item is in stock
                                     if (myVendingMachine.Stock[itemSelection].Stock > 0)
                                     {
-                                        bool saleMade = myVendingMachine.Transaction.MakeSale(myVendingMachine.Stock[itemSelection].Product.Price);
-                                        if(saleMade == true)
+                                        bool saleMade = myVendingMachine.Vend(itemSelection);
+                                        if (saleMade == true) // If sale is made
                                         {
-                                            myVendingMachine.Transaction.MakeSale(myVendingMachine.Stock[itemSelection].Product.Price);
-                                            itemSelection1.Vend(itemSelection.ToUpper());
+                                            Console.Clear();
                                             Console.WriteLine();
+                                            Console.CursorLeft = 35;
+                                            Console.WriteLine(myVendingMachine.Stock[itemSelection].Product.Name + " " + "" + " Price : " + myVendingMachine.Stock[itemSelection].Product.Price + " " + "Remaining balance: " + myVendingMachine.Transaction.Balance + " " + myVendingMachine.Stock[itemSelection].Product.Sound());
+                                            Console.WriteLine();
+                                            Console.CursorLeft = 45;
+                                            Console.WriteLine("Press 'Enter' to continue");
                                             Console.ReadLine();
+                                            Console.Clear();
                                         }
-                                        else if (saleMade == false)
+                                        else if (saleMade == false) // If funds are too low
                                         {
-                                            Console.WriteLine("Please add more funds to purchase this product");
+                                            Console.Clear();
+                                            Console.WriteLine();
+                                            Console.CursorLeft = 45;
+                                            Console.WriteLine("Please add more money");
+                                            Console.WriteLine();
+                                            Console.CursorLeft = 45;
+                                            Console.WriteLine("Press 'Enter' to continue");
+                                            Console.ReadLine();
+                                            Console.Clear();
                                         }
-                                        
                                     }
                                     else
                                     {
-                                        Console.WriteLine("Please make another selection");
+                                        Console.Clear();
+                                        Console.WriteLine();
+                                        Console.CursorLeft = 45;
+                                        Console.WriteLine("Please make another selection"); // If the product is sold out
+                                        Console.WriteLine();
+                                        Console.CursorLeft = 45;
+                                        Console.WriteLine("Press 'Enter' to continue");
+                                        Console.ReadLine();
+                                        Console.Clear();
                                     }
-                                    
-                               
                                 }
-                                Console.CursorLeft = 45;                            
-                                Console.Clear();
                             }
                             else if (productSelection == "2")
                             {
@@ -199,12 +206,12 @@ namespace Capstone
                                 Console.CursorLeft = 45;
                                 foreach (KeyValuePair<string, Inventory> saleItems in myVendingMachine.Stock) // Adds Candy to the machine
                                 {
-                                    if (saleItems.Value.Product.TypeName == "Candy" && saleItems.Value.Stock >= 1)
+                                    if (saleItems.Value.Product.TypeName == "Candy" && saleItems.Value.Stock >= 1) // Displays amount if greater than 0
                                     {
                                         Console.CursorLeft = 45;
                                         Console.WriteLine(saleItems.Key.Substring(0) + " | " + saleItems.Value.Product.Name + " | " + "$" + (saleItems.Value.Product.Price) + " | quantity = " + saleItems.Value.Stock);
                                     }
-                                    if (saleItems.Value.Product.TypeName == "Candy" && saleItems.Value.Stock == 0)
+                                    if (saleItems.Value.Product.TypeName == "Candy" && saleItems.Value.Stock == 0) // Displays sold out if amount is 0
                                     {
                                         Console.CursorLeft = 45;
                                         Console.WriteLine(saleItems.Key.Substring(0) + " | " + saleItems.Value.Product.Name + " | " + "$" + (saleItems.Value.Product.Price) + "| Sold Out ");
@@ -212,8 +219,55 @@ namespace Capstone
 
                                 }
                                 Console.CursorLeft = 45;
-                                Console.ReadLine();
-                                Console.Clear();
+                                string itemSelection = Console.ReadLine().ToUpper();
+                                List<string> possibleSlots = myVendingMachine.ReturnPossibleSlots();
+                                // If the user has entered a valid slot 
+                                if (possibleSlots.Contains(itemSelection))
+                                {
+
+                                    // If the item is in stock
+                                    if (myVendingMachine.Stock[itemSelection].Stock > 0)
+                                    {
+                                        bool saleMade = myVendingMachine.Vend(itemSelection);
+                                        if (saleMade == true) // If sale is made
+                                        {
+                                            Console.Clear();
+                                            Console.WriteLine();
+                                            Console.CursorLeft = 35;
+                                            Console.WriteLine(myVendingMachine.Stock[itemSelection].Product.Name + " " + "" + " Price : " + myVendingMachine.Stock[itemSelection].Product.Price + " " + "Remaining balance: " + myVendingMachine.Transaction.Balance + " " + myVendingMachine.Stock[itemSelection].Product.Sound());
+                                            Console.WriteLine();
+                                            Console.CursorLeft = 45;
+                                            Console.WriteLine("Press 'Enter' to continue");
+                                            Console.ReadLine();
+                                            Console.Clear();
+                                        }
+                                        else if (saleMade == false) // If funds are too low
+                                        {
+                                            Console.Clear();
+                                            Console.WriteLine();
+                                            Console.CursorLeft = 45;
+                                            Console.WriteLine("Please add more money");
+                                            Console.WriteLine();
+                                            Console.CursorLeft = 45;
+                                            Console.WriteLine("Press 'Enter' to continue");
+                                            Console.Beep(440, 200);
+                                            Console.ReadLine();
+                                            Console.Clear();
+                                        }
+                                    }
+                                    else
+                                    {
+                                        Console.Clear(); // If item is sold out
+                                        Console.WriteLine();
+                                        Console.CursorLeft = 45;
+                                        Console.WriteLine("Please make another selection");
+                                        Console.WriteLine();
+                                        Console.CursorLeft = 45;
+                                        Console.WriteLine("Press 'Enter' to continue");
+                                        Console.ReadLine();
+                                        Console.Clear();
+                                    }
+                                }
                             }
                             else if (productSelection == "3")
                             {
@@ -225,12 +279,12 @@ namespace Capstone
                                 Console.CursorLeft = 45;
                                 foreach (KeyValuePair<string, Inventory> saleItems in myVendingMachine.Stock) // Adds Drinks to the machine
                                 {
-                                    if (saleItems.Value.Product.TypeName == "Drink" && saleItems.Value.Stock >= 1)
+                                    if (saleItems.Value.Product.TypeName == "Drink" && saleItems.Value.Stock >= 1)// Displays amount if greater than 0
                                     {
                                         Console.CursorLeft = 45;
                                         Console.WriteLine(saleItems.Key.Substring(0) + " | " + saleItems.Value.Product.Name + " | " + "$" + (saleItems.Value.Product.Price) + " | quantity = " + saleItems.Value.Stock);
                                     }
-                                    if (saleItems.Value.Product.TypeName == "Drink" && saleItems.Value.Stock == 0)
+                                    if (saleItems.Value.Product.TypeName == "Drink" && saleItems.Value.Stock == 0)// Displays sold out if amount is 0
                                     {
                                         Console.CursorLeft = 45;
                                         Console.WriteLine(saleItems.Key.Substring(0) + " | " + saleItems.Value.Product.Name + " | " + "$" + (saleItems.Value.Product.Price) + "| Sold Out ");
@@ -238,8 +292,54 @@ namespace Capstone
 
                                 }
                                 Console.CursorLeft = 45;
-                                Console.ReadLine();
-                                Console.Clear();
+                                string itemSelection = Console.ReadLine().ToUpper();
+                                List<string> possibleSlots = myVendingMachine.ReturnPossibleSlots();
+                                // If the user has entered a valid slot 
+                                if (possibleSlots.Contains(itemSelection))
+                                {
+
+                                    // If the item is in stock
+                                    if (myVendingMachine.Stock[itemSelection].Stock > 0)
+                                    {
+                                        bool saleMade = myVendingMachine.Vend(itemSelection);
+                                        if (saleMade == true)// If sale is made
+                                        {
+                                            Console.Clear();
+                                            Console.WriteLine();
+                                            Console.CursorLeft = 35;
+                                            Console.WriteLine(myVendingMachine.Stock[itemSelection].Product.Name + " " + "" + " Price : " + myVendingMachine.Stock[itemSelection].Product.Price + " " + "Remaining balance: " + myVendingMachine.Transaction.Balance + " " + myVendingMachine.Stock[itemSelection].Product.Sound());
+                                            Console.WriteLine();
+                                            Console.CursorLeft = 45;
+                                            Console.WriteLine("Press 'Enter' to continue");
+                                            Console.ReadLine();
+                                            Console.Clear();
+                                        }
+                                        else if (saleMade == false)// If funds are too low
+                                        {
+                                            Console.Clear();
+                                            Console.WriteLine();
+                                            Console.CursorLeft = 45;
+                                            Console.WriteLine("Please add more money");
+                                            Console.WriteLine();
+                                            Console.CursorLeft = 45;
+                                            Console.WriteLine("Press 'Enter' to continue");
+                                            Console.ReadLine();
+                                            Console.Clear();
+                                        }
+                                    }
+                                    else
+                                    {
+                                        Console.Clear();// If item is sold out
+                                        Console.WriteLine();
+                                        Console.CursorLeft = 45;
+                                        Console.WriteLine("Please make another selection");
+                                        Console.WriteLine();
+                                        Console.CursorLeft = 45;
+                                        Console.WriteLine("Press 'Enter' to continue");
+                                        Console.ReadLine();
+                                        Console.Clear();
+                                    }
+                                }
                             }
                             else if (productSelection == "4")
                             {
@@ -248,15 +348,15 @@ namespace Capstone
                                 Console.CursorLeft = 45;
                                 Console.WriteLine($"Current Balance: {myVendingMachine.Transaction.Balance}"); // gets customer balance and displays
                                 Console.WriteLine();
-                                Console.CursorLeft = 45;                            
+                                Console.CursorLeft = 45;
                                 foreach (KeyValuePair<string, Inventory> saleItems in myVendingMachine.Stock) // Adds gum to the machine
                                 {
-                                    if (saleItems.Value.Product.TypeName == "Gum" && saleItems.Value.Stock >= 1)
+                                    if (saleItems.Value.Product.TypeName == "Gum" && saleItems.Value.Stock >= 1)// Displays amount if greater than 0
                                     {
                                         Console.CursorLeft = 45;
                                         Console.WriteLine(saleItems.Key.Substring(0) + " | " + saleItems.Value.Product.Name + " | " + "$" + (saleItems.Value.Product.Price) + " | quantity = " + saleItems.Value.Stock);
                                     }
-                                    if (saleItems.Value.Product.TypeName == "Gum" && saleItems.Value.Stock == 0)
+                                    if (saleItems.Value.Product.TypeName == "Gum" && saleItems.Value.Stock == 0)// Displays sold out if amount is 0
                                     {
                                         Console.CursorLeft = 45;
                                         Console.WriteLine(saleItems.Key.Substring(0) + " | " + saleItems.Value.Product.Name + " | " + "$" + (saleItems.Value.Product.Price) + "| Sold Out ");
@@ -264,11 +364,61 @@ namespace Capstone
 
                                 }
                                 Console.CursorLeft = 45;
-                                Console.ReadLine();
-                                Console.Clear();
+                                string itemSelection = Console.ReadLine().ToUpper();
+                                List<string> possibleSlots = myVendingMachine.ReturnPossibleSlots();
+                                // If the user has entered a valid slot 
+                                if (possibleSlots.Contains(itemSelection))
+                                {
+
+                                    // If the item is in stock
+                                    if (myVendingMachine.Stock[itemSelection].Stock > 0)
+                                    {
+                                        bool saleMade = myVendingMachine.Vend(itemSelection);
+                                        if (saleMade == true)// If sale is made
+                                        {
+                                            Console.Clear();
+                                            Console.WriteLine();
+                                            Console.CursorLeft = 35;
+                                            Console.WriteLine(myVendingMachine.Stock[itemSelection].Product.Name + " " + "" + " Price : " + myVendingMachine.Stock[itemSelection].Product.Price + " " + "Remaining balance: " + myVendingMachine.Transaction.Balance + " " + myVendingMachine.Stock[itemSelection].Product.Sound());
+                                            Console.WriteLine();
+                                            Console.CursorLeft = 45;
+                                            Console.WriteLine("Press 'Enter' to continue");
+                                            Console.ReadLine();
+                                            Console.Clear();
+                                        }
+                                        else if (saleMade == false)
+                                        {
+                                            Console.Clear();// If funds are too low
+                                            Console.WriteLine();
+                                            Console.CursorLeft = 45;
+                                            Console.WriteLine("Please add more money");
+                                            Console.WriteLine();
+                                            Console.CursorLeft = 45;
+                                            Console.WriteLine("Press 'Enter' to continue");
+                                            Console.ReadLine();
+                                            Console.Clear();
+                                        }
+                                    }
+                                    else
+                                    {
+                                        Console.Clear();// If item is sold out
+                                        Console.WriteLine();
+                                        Console.CursorLeft = 45;
+                                        Console.WriteLine("Please make another selection");
+                                        Console.WriteLine();
+                                        Console.CursorLeft = 45;
+                                        Console.WriteLine("Press 'Enter' to continue");
+                                        Console.ReadLine();
+                                        Console.Clear();
+                                    }
+
+
+                                }
+
                             }
                             else if (productSelection == "5")
                             {
+                               
                                 //return to purchasing menu
 
                             }
@@ -279,7 +429,11 @@ namespace Capstone
                             //return change due 
                             Console.WriteLine(vendHeader); // Generates header
                             Console.CursorLeft = 40;
-                            Console.WriteLine("Here is your change due in the appropiate coins!");
+                            int[] change = myVendingMachine.Transaction.MakeChange();
+                            Console.WriteLine("Here is your change. Thank you for using the Vendo-Matic 800");
+                            Console.WriteLine("Quarters: " + change[0]);
+                            Console.WriteLine("Dimes: " + change[1]);
+                            Console.WriteLine("Nickles: " + change[2]);
                             Console.WriteLine();
                             Console.WriteLine();
                             Console.CursorLeft = 40;
@@ -303,7 +457,13 @@ namespace Capstone
                         // Hidden menu that displays all transactions 
                         Console.WriteLine(vendHeader); // Generates header
                         Console.CursorLeft = 45;
-                        Console.WriteLine("Hidden Menu to Display Transaction Log");
+                        string returnLog = (Logger.ReturnLog());
+                        string[] returnLogArray = returnLog.Split('\n');
+                        foreach (string line in returnLogArray)
+                        {
+                            Console.CursorLeft = 45;
+                            Console.WriteLine(line);
+                        }
                         Console.WriteLine();
                         Console.CursorLeft = 45;
                         Console.WriteLine("Press 'Enter' to return to the Main menu");
