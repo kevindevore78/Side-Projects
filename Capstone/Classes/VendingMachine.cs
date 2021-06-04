@@ -10,7 +10,7 @@ namespace Capstone.Classes
         public Dictionary<string, Inventory> Stock { get; private set; } =
             new Dictionary<string, Inventory>();
         public Transaction Transaction { get; private set; } = new Transaction();
-        public string LogFile { get; private set; }
+        public string LogFile { get; private set; } = "logFile.txt";
 
         public VendingMachine()
         {
