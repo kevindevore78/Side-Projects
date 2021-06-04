@@ -27,7 +27,7 @@ namespace Capstone.Classes
                 Console.WriteLine("Enter an accepted $ amount.");
                 return;
             }
-            Logger.Log("FEED MONEY", amountEntered, this.Balance);
+            Logger.Log("FEED MONEY", amountEntered, this.Balance + amountEntered);
             this.Balance += amountEntered;
         }
 
