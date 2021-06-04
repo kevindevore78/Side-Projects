@@ -13,7 +13,7 @@ namespace Capstone.Classes
         {
             try
             {
-                using (StreamWriter write = new StreamWriter(logFile))
+                using (StreamWriter write = new StreamWriter(logFile, true))
                 {
                     write.WriteLine($"{DateTime.Today} {DateTime.Now} {transactionType}: " +
                         $"${value1} ${value2}");
