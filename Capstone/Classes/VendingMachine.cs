@@ -5,17 +5,30 @@ using System.IO;
 
 namespace Capstone.Classes
 {
-    public class VendingMachine
+    public class VendingMachine: ILoggable
     {
         public Dictionary<string, Inventory> Stock { get; private set; } =
             new Dictionary<string, Inventory>();
         public Transaction Transaction { get; private set; } = new Transaction();
+        public string LogFile { get; private set; }
 
         public VendingMachine()
         {
             
         }
 
+        public string[] ReturnPossibleSlots()
+        {
+            string[] arrayToReturn = new string[this.Stock.Count];
+            //incrementer
+            int i = 0;
+            foreach(KeyValuePair<string, Inventory> kvp in this.Stock)
+            {
+                arrayToReturn[0] = kvp.Key;
+                i++;
+            }
+            return arrayToReturn;
+        }
 
         /// <summary>
         /// Reads through a file to restock the vending machin
@@ -67,6 +80,12 @@ namespace Capstone.Classes
             }
         }
 
+
+        /// <summary>
+        /// Must be uppercase (Letter)(Number)
+        /// ex. A1, B2, C3
+        /// </summary>
+        /// <param name="slotLocation"></param>
         public void Vend(string slotLocation)
         {
             foreach(KeyValuePair<string, Inventory> kvp in this.Stock)
@@ -74,14 +93,18 @@ namespace Capstone.Classes
                 if(slotLocation == kvp.Key)
                 {
                     kvp.Value.LowerStock();
+                    this.Log(
+                        this.LogFile,
+                        (kvp.Value.Product + " " + kvp.Key),
+                        (this.Transaction.Balance),
+                        (this.Transaction.Balance - kvp.Value.Product.Price));
                     this.Transaction.MakeSale(kvp.Value.Product.Price);
                 }
             }
         }
 
-        public void Log()
+        public void Log(string logFile, string transactionType, decimal value1, decimal value2)
         {
-
         }
     }
 }
