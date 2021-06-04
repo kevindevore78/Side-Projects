@@ -17,17 +17,14 @@ namespace Capstone.Classes
             
         }
 
-        public string[] ReturnPossibleSlots()
+        public List<string> ReturnPossibleSlots()
         {
-            string[] arrayToReturn = new string[this.Stock.Count];
-            //incrementer
-            int i = 0;
+            List<string> listToReturn = new List<string>();
             foreach(KeyValuePair<string, Inventory> kvp in this.Stock)
             {
-                arrayToReturn[0] = kvp.Key;
-                i++;
+                listToReturn.Add(kvp.Key);
             }
-            return arrayToReturn;
+            return listToReturn;
         }
 
         /// <summary>
