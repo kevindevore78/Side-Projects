@@ -20,6 +20,8 @@ namespace Capstone
             Inventory inventory3 = new Inventory(three, 5);
             myVendingMachine.Stock.Add("a3", inventory3);   // Need to display slot number
 
+            VendingMachine itemSelection1 = new VendingMachine();
+
 
             while (true)
             {
@@ -154,8 +156,26 @@ namespace Capstone
                                     }
                                     
                                 }
-                                Console.CursorLeft = 45;
-                                Console.ReadLine();
+                                string itemSelection = Console.ReadLine();
+                                List<string> possibleSlots = myVendingMachine.ReturnPossibleSlots();
+                                if (possibleSlots.Contains(itemSelection))
+                                {
+                                    if (myVendingMachine.Transaction.Balance < myVendingMachine.Stock[itemSelection].Product.Price)
+                                    {
+                                        Console.WriteLine("Please add more funds for this transaction");
+                                        Console.ReadLine();
+                                    }
+                                    else if (myVendingMachine.Transaction.Balance > myVendingMachine.Stock[itemSelection].Product.Price && myVendingMachine.Stock[itemSelection].Stock > 0)
+                                    {
+                                        myVendingMachine.Transaction.MakeSale(myVendingMachine.Stock[itemSelection].Product.Price); 
+                                        itemSelection1.Vend(itemSelection.ToUpper());
+                                        Console.WriteLine();
+                                        Console.ReadLine();
+                                    }
+                                    
+                               
+                                }
+                                Console.CursorLeft = 45;                            
                                 Console.Clear();
                             }
                             else if (productSelection == "2")
