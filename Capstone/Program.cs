@@ -11,6 +11,7 @@ namespace Capstone
         {
             VendingMachine myVendingMachine = new VendingMachine(); // create object myVendingMachine
             myVendingMachine.Restock(@"C:\Users\Student\git\dotnet-capstone-1-team-3\vendingmachine.csv"); // Install Items dictionary
+            Logger.CheckSalesReportProducts(myVendingMachine.Stock);
 
             while (true)
             {
@@ -607,7 +608,7 @@ namespace Capstone
                         Console.WriteLine(vendHeader); // Generates header
                         Console.ForegroundColor = ConsoleColor.White;
                         Console.CursorLeft = 45;
-                        string returnLog = (Logger.ReturnLog());
+                        string returnLog = (Logger.PrintSalesReport());
                         string[] returnLogArray = returnLog.Split('\n');
                         foreach (string line in returnLogArray)
                         {
