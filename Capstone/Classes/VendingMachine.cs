@@ -112,6 +112,7 @@ namespace Capstone.Classes
                             (kvp.Value.Product.Name + " " + kvp.Key),
                             (this.Transaction.Balance),
                             (this.Transaction.Balance - kvp.Value.Product.Price));
+                        Logger.AppendToSalesReport(kvp.Value.Product.Name);
                         return this.Transaction.MakeSale(kvp.Value.Product.Price);
                     }
                     else
