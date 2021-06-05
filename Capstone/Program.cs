@@ -24,7 +24,7 @@ namespace Capstone
                 Console.WriteLine();
                 Console.WriteLine();
                 Console.CursorLeft = 45;
-                Console.WriteLine("(1) Vending Machine Items");
+                Console.WriteLine("(1) Display Vending Machine Items");
                 Console.CursorLeft = 45;
                 Console.WriteLine("(2) Purchase");
                 Console.CursorLeft = 45;
