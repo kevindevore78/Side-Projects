@@ -12,21 +12,24 @@ namespace Capstone
             VendingMachine myVendingMachine = new VendingMachine();
             myVendingMachine.Restock(@"C:\Users\Student\git\dotnet-capstone-1-team-3\vendingmachine.csv"); // Install Items dictionary
 
-            VendingMachine itemSelection1 = new VendingMachine();
-
-
             while (true)
             {
                 // Generates header
+                Console.ForegroundColor = ConsoleColor.Red;
                 string vendHeader = FiggleFonts.Standard.Render("                    Vendo-Matic 800");
                 // Creation of main menu
                 Console.WriteLine(vendHeader);
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine();
+                Console.WriteLine();
+                Console.WriteLine();
                 Console.CursorLeft = 45;
                 Console.WriteLine("(1) Vending Machine Items");
                 Console.CursorLeft = 45;
                 Console.WriteLine("(2) Purchase");
                 Console.CursorLeft = 45;
                 Console.WriteLine("(3) Exit");
+                Console.WriteLine();
                 Console.CursorLeft = 50;
                 string userSelection = Console.ReadLine(); // Main menu selection 
                 Console.Clear();
@@ -35,7 +38,9 @@ namespace Capstone
 
                     if (userSelection == "1")
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine(vendHeader); // Generates header
+                        Console.ForegroundColor = ConsoleColor.White;
                         foreach (KeyValuePair<string, Inventory> saleItems in myVendingMachine.Stock) // Print all items with their quantity remaining
                         {
                             Console.CursorLeft = 45;
@@ -43,7 +48,7 @@ namespace Capstone
                         }
                         Console.WriteLine();
                         Console.WriteLine();
-                        Console.CursorLeft = 45;
+                        Console.CursorLeft = 50;
                         Console.WriteLine("Click 'Enter' to Continue");
                         Console.ReadLine();
                         Console.Clear();
@@ -54,7 +59,9 @@ namespace Capstone
                     {
 
                         // Guiding through the purchasing process menu
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine(vendHeader);// Generates header
+                        Console.ForegroundColor = ConsoleColor.White;
                         Console.CursorLeft = 45;
                         Console.WriteLine("(1) Add Money");
                         Console.CursorLeft = 45;
@@ -64,7 +71,10 @@ namespace Capstone
                         Console.CursorLeft = 45;
                         Console.WriteLine();
                         Console.CursorLeft = 45;
-                        Console.WriteLine($"Current Balance: {myVendingMachine.Transaction.Balance}"); //Populate current balance = $0 to start -- transaction class tie
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine($"Current Balance: ${myVendingMachine.Transaction.Balance}"); //Populate current balance = $0 to start -- transaction class tie
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.WriteLine();
                         Console.WriteLine();
                         Console.CursorLeft = 55;
                         string purchaseSelection = Console.ReadLine(); // Where menu selection is entered
@@ -73,12 +83,16 @@ namespace Capstone
                         if (purchaseSelection == "1")
                         {
                             // Add Money to transaction class -- transaction class tie
+                            Console.ForegroundColor = ConsoleColor.Red;
                             Console.WriteLine(vendHeader); // Generates header
+                            Console.ForegroundColor = ConsoleColor.White;
                             Console.CursorLeft = 35;
                             Console.WriteLine("Please add $1, $2, $5, or $10 bills and press 'Enter'");
                             Console.WriteLine();
                             Console.CursorLeft = 50;
-                            Console.WriteLine($"Current Balance: {myVendingMachine.Transaction.Balance}"); // gets customer balance and displays
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.WriteLine($"Current Balance: ${myVendingMachine.Transaction.Balance}"); // gets customer balance and displays
+                            Console.ForegroundColor = ConsoleColor.White;
                             Console.WriteLine();
                             Console.CursorLeft = 60;
                             string moneyAdded = Console.ReadLine(); // Where money is entered
@@ -104,7 +118,9 @@ namespace Capstone
                         {
                             // Select Product list populates
                             // User can select an option. The users balance follows through out
+                            Console.ForegroundColor = ConsoleColor.Red;
                             Console.WriteLine(vendHeader); // Generates header
+                            Console.ForegroundColor = ConsoleColor.White;
                             Console.CursorLeft = 45;
                             Console.WriteLine("(1) Chips");
                             Console.CursorLeft = 45;
@@ -117,7 +133,9 @@ namespace Capstone
                             Console.WriteLine("(5) Return to previous menu");
                             Console.WriteLine();
                             Console.CursorLeft = 45;
-                            Console.WriteLine($"Current Balance: {myVendingMachine.Transaction.Balance}"); // gets customer balance and displays
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.WriteLine($"Current Balance: ${myVendingMachine.Transaction.Balance}"); // gets customer balance and displays
+                            Console.ForegroundColor = ConsoleColor.White;
                             Console.WriteLine();
                             Console.CursorLeft = 60;
                             string productSelection = Console.ReadLine(); // Where product is selected 
@@ -127,9 +145,13 @@ namespace Capstone
                             {
 
                                 // populate the list of chips available
+                                Console.ForegroundColor = ConsoleColor.Red;
                                 Console.WriteLine(vendHeader); // Generates header
-                                Console.CursorLeft = 45;
-                                Console.WriteLine($"Current Balance: {myVendingMachine.Transaction.Balance}"); // gets customer balance and displays
+                                Console.ForegroundColor = ConsoleColor.White;
+                                Console.CursorLeft = 55;
+                                Console.ForegroundColor = ConsoleColor.Green;
+                                Console.WriteLine($"Current Balance: ${myVendingMachine.Transaction.Balance}"); // gets customer balance and displays
+                                Console.ForegroundColor = ConsoleColor.White;
                                 Console.WriteLine();
                                 Console.CursorLeft = 45;
                                 foreach (KeyValuePair<string, Inventory> saleItems in myVendingMachine.Stock) // Adds Chips to the chip menu
@@ -146,7 +168,9 @@ namespace Capstone
                                     }
 
                                 }
-                                Console.CursorLeft = 45;
+                                Console.WriteLine();
+                                Console.WriteLine();
+                                Console.CursorLeft = 65;
                                 string itemSelection = Console.ReadLine().ToUpper();
                                 List<string> possibleSlots = myVendingMachine.ReturnPossibleSlots();
                                 // If the user has entered a valid slot 
@@ -194,14 +218,18 @@ namespace Capstone
                                         Console.ReadLine();
                                         Console.Clear();
                                     }
-                                }
+                                }Console.Clear();
                             }
                             else if (productSelection == "2")
                             {
                                 // populate the Candy available
+                                Console.ForegroundColor = ConsoleColor.Red;
                                 Console.WriteLine(vendHeader); // Generates header
-                                Console.CursorLeft = 45;
-                                Console.WriteLine($"Current Balance: {myVendingMachine.Transaction.Balance}"); // gets customer balance and displays
+                                Console.ForegroundColor = ConsoleColor.White;
+                                Console.CursorLeft = 50;
+                                Console.ForegroundColor = ConsoleColor.Green;
+                                Console.WriteLine($"Current Balance: ${myVendingMachine.Transaction.Balance}"); // gets customer balance and displays
+                                Console.ForegroundColor = ConsoleColor.White;
                                 Console.WriteLine();
                                 Console.CursorLeft = 45;
                                 foreach (KeyValuePair<string, Inventory> saleItems in myVendingMachine.Stock) // Adds Candy to the machine
@@ -218,7 +246,9 @@ namespace Capstone
                                     }
 
                                 }
-                                Console.CursorLeft = 45;
+                                Console.WriteLine();
+                                Console.WriteLine();
+                                Console.CursorLeft = 60;
                                 string itemSelection = Console.ReadLine().ToUpper();
                                 List<string> possibleSlots = myVendingMachine.ReturnPossibleSlots();
                                 // If the user has entered a valid slot 
@@ -268,13 +298,18 @@ namespace Capstone
                                         Console.Clear();
                                     }
                                 }
+                                Console.Clear();
                             }
                             else if (productSelection == "3")
                             {
                                 //populate the Drinks available 
+                                Console.ForegroundColor = ConsoleColor.Red;
                                 Console.WriteLine(vendHeader); // Generates header
-                                Console.CursorLeft = 45;
-                                Console.WriteLine($"Current Balance: {myVendingMachine.Transaction.Balance}"); // gets customer balance and displays
+                                Console.ForegroundColor = ConsoleColor.White;
+                                Console.CursorLeft = 50;
+                                Console.ForegroundColor = ConsoleColor.Green;
+                                Console.WriteLine($"Current Balance: ${myVendingMachine.Transaction.Balance}"); // gets customer balance and displays
+                                Console.ForegroundColor = ConsoleColor.White;
                                 Console.WriteLine();
                                 Console.CursorLeft = 45;
                                 foreach (KeyValuePair<string, Inventory> saleItems in myVendingMachine.Stock) // Adds Drinks to the machine
@@ -291,7 +326,9 @@ namespace Capstone
                                     }
 
                                 }
-                                Console.CursorLeft = 45;
+                                Console.WriteLine();
+                                Console.WriteLine();
+                                Console.CursorLeft = 60;
                                 string itemSelection = Console.ReadLine().ToUpper();
                                 List<string> possibleSlots = myVendingMachine.ReturnPossibleSlots();
                                 // If the user has entered a valid slot 
@@ -340,13 +377,18 @@ namespace Capstone
                                         Console.Clear();
                                     }
                                 }
+                                Console.Clear();
                             }
                             else if (productSelection == "4")
                             {
                                 // populate gum available 
+                                Console.ForegroundColor = ConsoleColor.Red;
                                 Console.WriteLine(vendHeader); // Generates header
-                                Console.CursorLeft = 45;
-                                Console.WriteLine($"Current Balance: {myVendingMachine.Transaction.Balance}"); // gets customer balance and displays
+                                Console.ForegroundColor = ConsoleColor.White;
+                                Console.CursorLeft = 50;
+                                Console.ForegroundColor = ConsoleColor.Green;
+                                Console.WriteLine($"Current Balance: ${myVendingMachine.Transaction.Balance}"); // gets customer balance and displays
+                                Console.ForegroundColor = ConsoleColor.White;
                                 Console.WriteLine();
                                 Console.CursorLeft = 45;
                                 foreach (KeyValuePair<string, Inventory> saleItems in myVendingMachine.Stock) // Adds gum to the machine
@@ -363,7 +405,9 @@ namespace Capstone
                                     }
 
                                 }
-                                Console.CursorLeft = 45;
+                                Console.WriteLine();
+                                Console.WriteLine();
+                                Console.CursorLeft = 60;
                                 string itemSelection = Console.ReadLine().ToUpper();
                                 List<string> possibleSlots = myVendingMachine.ReturnPossibleSlots();
                                 // If the user has entered a valid slot 
@@ -411,29 +455,33 @@ namespace Capstone
                                         Console.ReadLine();
                                         Console.Clear();
                                     }
-
-
                                 }
-
+                                Console.Clear();
                             }
                             else if (productSelection == "5")
                             {
-                               
+                             
                                 //return to purchasing menu
-
                             }
                         }
                         else if (purchaseSelection == "3")
                         {
                             //retrun to main menu
                             //return change due 
+                            Console.ForegroundColor = ConsoleColor.Red;
                             Console.WriteLine(vendHeader); // Generates header
+                            Console.ForegroundColor = ConsoleColor.White;
                             Console.CursorLeft = 40;
                             int[] change = myVendingMachine.Transaction.MakeChange();
+                            Console.CursorLeft = 35;
                             Console.WriteLine("Here is your change. Thank you for using the Vendo-Matic 800");
-                            Console.WriteLine("Quarters: " + change[0]);
-                            Console.WriteLine("Dimes: " + change[1]);
-                            Console.WriteLine("Nickles: " + change[2]);
+                            Console.WriteLine();
+                            Console.CursorLeft = 55;
+                            Console.WriteLine("Quarters: " + change[0]); // generates quarters for change back
+                            Console.CursorLeft = 55;
+                            Console.WriteLine("Dimes: " + change[1]); // generate dimes for change back
+                            Console.CursorLeft = 55;
+                            Console.WriteLine("Nickles: " + change[2]); // generates nickles for change back
                             Console.WriteLine();
                             Console.WriteLine();
                             Console.CursorLeft = 40;
@@ -448,6 +496,7 @@ namespace Capstone
                     else if (userSelection == "3")
                     {
                         // Exit program
+                        Console.ForegroundColor = ConsoleColor.Green;
                         string ending = FiggleFonts.Tombstone.Render("Thanks for giving us your money!"); //Creates ending text
                         Console.WriteLine(ending);
                         return;
@@ -455,7 +504,9 @@ namespace Capstone
                     else if (userSelection == "4")
                     {
                         // Hidden menu that displays all transactions 
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine(vendHeader); // Generates header
+                        Console.ForegroundColor = ConsoleColor.White;
                         Console.CursorLeft = 45;
                         string returnLog = (Logger.ReturnLog());
                         string[] returnLogArray = returnLog.Split('\n');
