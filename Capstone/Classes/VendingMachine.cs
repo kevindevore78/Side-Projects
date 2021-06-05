@@ -105,12 +105,20 @@ namespace Capstone.Classes
             {
                 if(slotLocation == kvp.Key)
                 {
-                    kvp.Value.LowerStock();
-                    Logger.Log(
-                        (kvp.Value.Product.Name + " " + kvp.Key),
-                        (this.Transaction.Balance),
-                        (this.Transaction.Balance - kvp.Value.Product.Price));
-                    return this.Transaction.MakeSale(kvp.Value.Product.Price);
+                    if(kvp.Value.Stock > 0)
+                    {
+                        kvp.Value.LowerStock();
+                        Logger.Log(
+                            (kvp.Value.Product.Name + " " + kvp.Key),
+                            (this.Transaction.Balance),
+                            (this.Transaction.Balance - kvp.Value.Product.Price));
+                        return this.Transaction.MakeSale(kvp.Value.Product.Price);
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
                 }
             }
             return false;
