@@ -607,13 +607,17 @@ namespace Capstone
                         // Hidden menu that displays all transactions 
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine(vendHeader); // Generates header
-                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.ForegroundColor = ConsoleColor.DarkGreen;
+                        Console.CursorLeft = 58;
+                        Console.WriteLine("Sales Log");
                         Console.CursorLeft = 45;
-                        string returnLog = (Logger.PrintSalesReport());
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.WriteLine();
+                        string returnLog = (Logger.PrintSalesReport()); // Generates sales log 
                         string[] returnLogArray = returnLog.Split('\n');
                         foreach (string line in returnLogArray)
                         {
-                            Console.CursorLeft = 45;
+                            Console.CursorLeft = 55; // Displays sales log 
                             Console.WriteLine(line);
                         }
                         Console.WriteLine();
