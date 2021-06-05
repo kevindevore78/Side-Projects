@@ -9,7 +9,7 @@ namespace Capstone
     {
         static void Main(string[] args)
         {
-            VendingMachine myVendingMachine = new VendingMachine();
+            VendingMachine myVendingMachine = new VendingMachine(); // create object myVendingMachine
             myVendingMachine.Restock(@"C:\Users\Student\git\dotnet-capstone-1-team-3\vendingmachine.csv"); // Install Items dictionary
 
             while (true)
@@ -107,8 +107,11 @@ namespace Capstone
                             }
                             else if ((moneyAdded != "1") || (moneyAdded != "2") || (moneyAdded != "5") || (moneyAdded != "10"))
                             {
+                                Console.Beep(440, 200);
+                                Console.ForegroundColor = ConsoleColor.Red;
                                 Console.CursorLeft = 45;
                                 Console.WriteLine("Please add correct dollar amount!!"); // Tells user they added wrong dollar amount
+                                Console.ForegroundColor = ConsoleColor.White;
                                 Console.ReadLine();
 
                             }
