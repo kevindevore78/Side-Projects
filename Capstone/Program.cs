@@ -95,14 +95,15 @@ namespace Capstone
                             Console.WriteLine($"Current Balance: ${myVendingMachine.Transaction.Balance}"); // gets customer balance and displays
                             Console.ForegroundColor = ConsoleColor.White;
                             Console.WriteLine();
-                            Console.CursorLeft = 55;
+                            Console.CursorLeft = 57;
                             Console.Write("$ ");
                             string moneyAdded = Console.ReadLine(); // Where money is entered
                             Console.WriteLine();
                             if ((moneyAdded == "1") || (moneyAdded == "2") || (moneyAdded == "5") || (moneyAdded == "10"))
                             {
-                                Console.CursorLeft = 53;
-                                Console.WriteLine("Thank you!");
+                                Console.CursorLeft = 40;
+                                Console.ForegroundColor = ConsoleColor.Magenta;
+                                Console.WriteLine($" ${moneyAdded}.00 added to your account Thank you!");
                                 myVendingMachine.Transaction.FeedMoney(decimal.Parse(moneyAdded)); // Adds money to transaction if correct $ amount
                                 Console.ReadLine();
                                 Console.Clear();
