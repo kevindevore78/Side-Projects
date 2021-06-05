@@ -183,12 +183,19 @@ namespace Capstone
                                         bool saleMade = myVendingMachine.Vend(itemSelection);
                                         if (saleMade == true) // If sale is made
                                         {
-                                            Console.Clear();
+                                            Console.Clear();                                           
                                             Console.WriteLine();
-                                            Console.CursorLeft = 35;
-                                            Console.WriteLine(myVendingMachine.Stock[itemSelection].Product.Name + " " + "" + " Price : " + myVendingMachine.Stock[itemSelection].Product.Price + " " + "Remaining balance: " + myVendingMachine.Transaction.Balance + " " + myVendingMachine.Stock[itemSelection].Product.Sound());
                                             Console.WriteLine();
-                                            Console.CursorLeft = 45;
+                                            Console.WriteLine();
+                                            Console.WriteLine();
+                                            Console.ForegroundColor = ConsoleColor.Yellow;
+                                            Console.CursorLeft = 25;
+                                            Console.WriteLine(myVendingMachine.Stock[itemSelection].Product.Name + "   " + "" + " Price: $" + myVendingMachine.Stock[itemSelection].Product.Price + "    " + "Remaining balance: $" + myVendingMachine.Transaction.Balance + "   " + myVendingMachine.Stock[itemSelection].Product.Sound());
+                                            Console.ForegroundColor = ConsoleColor.White;
+                                            Console.WriteLine();
+                                            Console.WriteLine();
+                                            Console.WriteLine();
+                                            Console.CursorLeft = 50;
                                             Console.WriteLine("Press 'Enter' to continue");
                                             Console.ReadLine();
                                             Console.Clear();
@@ -196,10 +203,18 @@ namespace Capstone
                                         else if (saleMade == false) // If funds are too low
                                         {
                                             Console.Clear();
+                                            Console.Beep(440, 200);
                                             Console.WriteLine();
-                                            Console.CursorLeft = 45;
-                                            Console.WriteLine("Please add more money");
                                             Console.WriteLine();
+                                            Console.WriteLine();
+                                            Console.WriteLine();
+                                            Console.WriteLine();
+                                            Console.WriteLine();
+                                            Console.ForegroundColor = ConsoleColor.Cyan;                                           
+                                            Console.WriteLine(FiggleFonts.Standard.Render("   Please add more money"));
+                                            Console.WriteLine();
+                                            Console.WriteLine();
+                                            Console.ForegroundColor = ConsoleColor.White;
                                             Console.CursorLeft = 45;
                                             Console.WriteLine("Press 'Enter' to continue");
                                             Console.ReadLine();
@@ -208,12 +223,20 @@ namespace Capstone
                                     }
                                     else
                                     {
-                                        Console.Clear();
+                                        Console.Clear(); // If Item is sold out
+                                        Console.Beep(440, 200);
                                         Console.WriteLine();
-                                        Console.CursorLeft = 45;
-                                        Console.WriteLine("Please make another selection"); // If the product is sold out
                                         Console.WriteLine();
-                                        Console.CursorLeft = 45;
+                                        Console.WriteLine();
+                                        Console.WriteLine();
+                                        Console.WriteLine();
+                                        Console.WriteLine();
+                                        Console.ForegroundColor = ConsoleColor.Red;
+                                        Console.WriteLine(FiggleFonts.Standard.Render("                                   Sold Out !!!!"));
+                                        Console.WriteLine();
+                                        Console.WriteLine();
+                                        Console.ForegroundColor = ConsoleColor.White;
+                                        Console.CursorLeft = 43;
                                         Console.WriteLine("Press 'Enter' to continue");
                                         Console.ReadLine();
                                         Console.Clear();
@@ -263,10 +286,17 @@ namespace Capstone
                                         {
                                             Console.Clear();
                                             Console.WriteLine();
-                                            Console.CursorLeft = 35;
-                                            Console.WriteLine(myVendingMachine.Stock[itemSelection].Product.Name + " " + "" + " Price : " + myVendingMachine.Stock[itemSelection].Product.Price + " " + "Remaining balance: " + myVendingMachine.Transaction.Balance + " " + myVendingMachine.Stock[itemSelection].Product.Sound());
                                             Console.WriteLine();
-                                            Console.CursorLeft = 45;
+                                            Console.WriteLine();
+                                            Console.WriteLine();
+                                            Console.ForegroundColor = ConsoleColor.Yellow;
+                                            Console.CursorLeft = 25;
+                                            Console.WriteLine(myVendingMachine.Stock[itemSelection].Product.Name + "   " + "" + " Price: $" + myVendingMachine.Stock[itemSelection].Product.Price + "    " + "Remaining balance: $" + myVendingMachine.Transaction.Balance + "   " + myVendingMachine.Stock[itemSelection].Product.Sound());
+                                            Console.ForegroundColor = ConsoleColor.White;
+                                            Console.WriteLine();
+                                            Console.WriteLine();
+                                            Console.WriteLine();
+                                            Console.CursorLeft = 50;
                                             Console.WriteLine("Press 'Enter' to continue");
                                             Console.ReadLine();
                                             Console.Clear();
@@ -274,25 +304,40 @@ namespace Capstone
                                         else if (saleMade == false) // If funds are too low
                                         {
                                             Console.Clear();
+                                            Console.Beep(440, 200);
                                             Console.WriteLine();
-                                            Console.CursorLeft = 45;
-                                            Console.WriteLine("Please add more money");
                                             Console.WriteLine();
+                                            Console.WriteLine();
+                                            Console.WriteLine();
+                                            Console.WriteLine();
+                                            Console.WriteLine();
+                                            Console.ForegroundColor = ConsoleColor.Cyan;
+                                            Console.WriteLine(FiggleFonts.Standard.Render("   Please add more money"));
+                                            Console.WriteLine();
+                                            Console.WriteLine();
+                                            Console.ForegroundColor = ConsoleColor.White;
                                             Console.CursorLeft = 45;
                                             Console.WriteLine("Press 'Enter' to continue");
-                                            Console.Beep(440, 200);
                                             Console.ReadLine();
                                             Console.Clear();
                                         }
                                     }
                                     else
                                     {
-                                        Console.Clear(); // If item is sold out
+                                        Console.Clear(); // If Item is sold out
+                                        Console.Beep(440, 200);
                                         Console.WriteLine();
-                                        Console.CursorLeft = 45;
-                                        Console.WriteLine("Please make another selection");
                                         Console.WriteLine();
-                                        Console.CursorLeft = 45;
+                                        Console.WriteLine();
+                                        Console.WriteLine();
+                                        Console.WriteLine();
+                                        Console.WriteLine();
+                                        Console.ForegroundColor = ConsoleColor.Red;
+                                        Console.WriteLine(FiggleFonts.Standard.Render("                                   Sold Out !!!!"));
+                                        Console.WriteLine();
+                                        Console.WriteLine();
+                                        Console.ForegroundColor = ConsoleColor.White;
+                                        Console.CursorLeft = 43;
                                         Console.WriteLine("Press 'Enter' to continue");
                                         Console.ReadLine();
                                         Console.Clear();
@@ -343,10 +388,17 @@ namespace Capstone
                                         {
                                             Console.Clear();
                                             Console.WriteLine();
-                                            Console.CursorLeft = 35;
-                                            Console.WriteLine(myVendingMachine.Stock[itemSelection].Product.Name + " " + "" + " Price : " + myVendingMachine.Stock[itemSelection].Product.Price + " " + "Remaining balance: " + myVendingMachine.Transaction.Balance + " " + myVendingMachine.Stock[itemSelection].Product.Sound());
                                             Console.WriteLine();
-                                            Console.CursorLeft = 45;
+                                            Console.WriteLine();
+                                            Console.WriteLine();
+                                            Console.ForegroundColor = ConsoleColor.Yellow;
+                                            Console.CursorLeft = 25;
+                                            Console.WriteLine(myVendingMachine.Stock[itemSelection].Product.Name + "   " + "" + " Price: $" + myVendingMachine.Stock[itemSelection].Product.Price + "    " + "Remaining balance: $" + myVendingMachine.Transaction.Balance + "   " + myVendingMachine.Stock[itemSelection].Product.Sound());
+                                            Console.ForegroundColor = ConsoleColor.White;
+                                            Console.WriteLine();
+                                            Console.WriteLine();
+                                            Console.WriteLine();
+                                            Console.CursorLeft = 50;
                                             Console.WriteLine("Press 'Enter' to continue");
                                             Console.ReadLine();
                                             Console.Clear();
@@ -354,24 +406,40 @@ namespace Capstone
                                         else if (saleMade == false)// If funds are too low
                                         {
                                             Console.Clear();
+                                            Console.Beep(440, 200);
                                             Console.WriteLine();
-                                            Console.CursorLeft = 45;
-                                            Console.WriteLine("Please add more money");
                                             Console.WriteLine();
+                                            Console.WriteLine();
+                                            Console.WriteLine();
+                                            Console.WriteLine();
+                                            Console.WriteLine();
+                                            Console.ForegroundColor = ConsoleColor.Cyan;
+                                            Console.WriteLine(FiggleFonts.Standard.Render("   Please add more money"));
+                                            Console.WriteLine();
+                                            Console.WriteLine();
+                                            Console.ForegroundColor = ConsoleColor.White;
                                             Console.CursorLeft = 45;
                                             Console.WriteLine("Press 'Enter' to continue");
                                             Console.ReadLine();
-                                            Console.Clear();
+                                            Console.Clear(); ;
                                         }
                                     }
                                     else
                                     {
-                                        Console.Clear();// If item is sold out
+                                        Console.Clear(); // If Item is sold out
+                                        Console.Beep(440, 200);
                                         Console.WriteLine();
-                                        Console.CursorLeft = 45;
-                                        Console.WriteLine("Please make another selection");
                                         Console.WriteLine();
-                                        Console.CursorLeft = 45;
+                                        Console.WriteLine();
+                                        Console.WriteLine();
+                                        Console.WriteLine();
+                                        Console.WriteLine();
+                                        Console.ForegroundColor = ConsoleColor.Red;
+                                        Console.WriteLine(FiggleFonts.Standard.Render("                                   Sold Out !!!!"));
+                                        Console.WriteLine();
+                                        Console.WriteLine();
+                                        Console.ForegroundColor = ConsoleColor.White;
+                                        Console.CursorLeft = 43;
                                         Console.WriteLine("Press 'Enter' to continue");
                                         Console.ReadLine();
                                         Console.Clear();
@@ -422,21 +490,36 @@ namespace Capstone
                                         {
                                             Console.Clear();
                                             Console.WriteLine();
-                                            Console.CursorLeft = 35;
-                                            Console.WriteLine(myVendingMachine.Stock[itemSelection].Product.Name + " " + "" + " Price : " + myVendingMachine.Stock[itemSelection].Product.Price + " " + "Remaining balance: " + myVendingMachine.Transaction.Balance + " " + myVendingMachine.Stock[itemSelection].Product.Sound());
                                             Console.WriteLine();
-                                            Console.CursorLeft = 45;
+                                            Console.WriteLine();
+                                            Console.WriteLine();
+                                            Console.ForegroundColor = ConsoleColor.Yellow;
+                                            Console.CursorLeft = 25;
+                                            Console.WriteLine(myVendingMachine.Stock[itemSelection].Product.Name + "   " + "" + " Price: $" + myVendingMachine.Stock[itemSelection].Product.Price + "    " + "Remaining balance: $" + myVendingMachine.Transaction.Balance + "   " + myVendingMachine.Stock[itemSelection].Product.Sound());
+                                            Console.ForegroundColor = ConsoleColor.White;
+                                            Console.WriteLine();
+                                            Console.WriteLine();
+                                            Console.WriteLine();
+                                            Console.CursorLeft = 50;
                                             Console.WriteLine("Press 'Enter' to continue");
                                             Console.ReadLine();
                                             Console.Clear();
                                         }
                                         else if (saleMade == false)
                                         {
-                                            Console.Clear();// If funds are too low
+                                            Console.Clear();
+                                            Console.Beep(440, 200);
                                             Console.WriteLine();
-                                            Console.CursorLeft = 45;
-                                            Console.WriteLine("Please add more money");
                                             Console.WriteLine();
+                                            Console.WriteLine();
+                                            Console.WriteLine();
+                                            Console.WriteLine();
+                                            Console.WriteLine();
+                                            Console.ForegroundColor = ConsoleColor.Cyan;
+                                            Console.WriteLine(FiggleFonts.Standard.Render("   Please add more money"));
+                                            Console.WriteLine();
+                                            Console.WriteLine();
+                                            Console.ForegroundColor = ConsoleColor.White;
                                             Console.CursorLeft = 45;
                                             Console.WriteLine("Press 'Enter' to continue");
                                             Console.ReadLine();
@@ -445,12 +528,20 @@ namespace Capstone
                                     }
                                     else
                                     {
-                                        Console.Clear();// If item is sold out
+                                        Console.Clear(); // If Item is sold out
+                                        Console.Beep(440, 200);
                                         Console.WriteLine();
-                                        Console.CursorLeft = 45;
-                                        Console.WriteLine("Please make another selection");
                                         Console.WriteLine();
-                                        Console.CursorLeft = 45;
+                                        Console.WriteLine();
+                                        Console.WriteLine();
+                                        Console.WriteLine();
+                                        Console.WriteLine();
+                                        Console.ForegroundColor = ConsoleColor.Red;
+                                        Console.WriteLine(FiggleFonts.Standard.Render("                                   Sold Out !!!!"));
+                                        Console.WriteLine();
+                                        Console.WriteLine();
+                                        Console.ForegroundColor = ConsoleColor.White;
+                                        Console.CursorLeft = 43;
                                         Console.WriteLine("Press 'Enter' to continue");
                                         Console.ReadLine();
                                         Console.Clear();
@@ -475,6 +566,7 @@ namespace Capstone
                             int[] change = myVendingMachine.Transaction.MakeChange();
                             Console.CursorLeft = 35;
                             Console.WriteLine("Here is your change. Thank you for using the Vendo-Matic 800");
+                            Console.ForegroundColor = ConsoleColor.Blue;
                             Console.WriteLine();
                             Console.CursorLeft = 55;
                             Console.WriteLine("Quarters: " + change[0]); // generates quarters for change back
@@ -484,6 +576,7 @@ namespace Capstone
                             Console.WriteLine("Nickles: " + change[2]); // generates nickles for change back
                             Console.WriteLine();
                             Console.WriteLine();
+                            Console.ForegroundColor = ConsoleColor.White;
                             Console.CursorLeft = 40;
                             Console.WriteLine("Press 'Enter' to return to the Main menu");
                             Console.CursorLeft = 60;
