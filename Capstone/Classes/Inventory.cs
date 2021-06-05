@@ -28,7 +28,11 @@ namespace Capstone.Classes
         /// </summary>
         public void LowerStock()
         {
-            this.Stock--;
+            if (this.Stock > 0)
+            {
+                this.Stock--;
+            }
+            
         } 
     }
 }
