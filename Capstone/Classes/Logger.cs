@@ -10,7 +10,8 @@ namespace Capstone.Classes
         public static string logFile = Path.Combine(Directory.GetCurrentDirectory(), "logFile.txt");
 
         /// <summary>
-        ///A static method that 
+        ///A static method that Writes a data stream to a log file
+        ///to log any transaction made.
         /// </summary>
         /// <param name="transactionType"></param>
         /// <param name="value1"></param>
