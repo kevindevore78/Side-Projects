@@ -125,6 +125,10 @@ namespace Capstone.Classes
                             updatedInt++;
                             writer.WriteLine($"{lineSplit[0]}|{updatedInt}");
                         }
+                        else
+                        {
+                            writer.WriteLine(line);
+                        }
                     }
 
                 }
@@ -132,6 +136,24 @@ namespace Capstone.Classes
             catch (Exception ex)
             {
                 Console.WriteLine("SalesReport file was not able to be read or written.");
+            }
+
+            //overwrite with new sales report
+            try
+            {
+                using (StreamReader reader = new StreamReader(tempSalesReportFile))
+                using (StreamWriter writer = new StreamWriter(salesReportFile))
+                {
+                    while (!reader.EndOfStream)
+                    {
+                        string line = reader.ReadLine();
+                        writer.WriteLine(line);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Could not write or read file");
             }
         }
 
