@@ -64,31 +64,18 @@ namespace Capstone.Classes
             {
 
                 using(StreamReader reader = new StreamReader(salesReportFile))
-                using (StreamWriter write = new StreamWriter(tempSalesReportFile))
+                using (StreamWriter writer = new StreamWriter(tempSalesReportFile))
                 {
-                    while (!reader.EndOfStream)
+                    string file = reader.ReadToEnd();
+                    //for each element in stock, check to see if
+                    //it exists in the sales report
+                    foreach (KeyValuePair<string, Inventory> kvp in Stock)
                     {
-                        bool itemExistsInSalesReport = false;
-                        string line = reader.ReadLine();
-                        string[] currentItem = line.Split('|');
-                        foreach (KeyValuePair<string, Inventory> kvp in Stock)
+                        if (!file.Contains(kvp.Value.Product.Name))
                         {
-                            if (kvp.Value.Product.Name == currentItem[0])
-                            {
-                                itemExistsInSalesReport = true;
-                            }
-                        }
-
-                        if (itemExistsInSalesReport)
-                        {
-
-                        }
-                        else
-                        {
-                            write.WriteLine(currentItem[0] + "|0");
+                            writer.WriteLine($"{kvp.Value.Product.Name}|0");
                         }
                     }
-
                 }
             }
             catch(Exception ex)
