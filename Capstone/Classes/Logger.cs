@@ -147,5 +147,21 @@ namespace Capstone.Classes
                 Console.WriteLine("SalesReport file was not able to be read or written.");
             }
         }
+
+        public static string PrintSalesReport()
+        {
+            try
+            {
+                using(StreamReader reader = new StreamReader(salesReportFile))
+                {
+                    return reader.ReadToEnd();
+                }
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine("Could not read from sales report file");
+            }
+            return "";
+        }
     }
 }
