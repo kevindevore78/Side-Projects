@@ -89,17 +89,18 @@ namespace Capstone
                             Console.CursorLeft = 35;
                             Console.WriteLine("Please add $1, $2, $5, or $10 bills and press 'Enter'");
                             Console.WriteLine();
-                            Console.CursorLeft = 50;
+                            Console.CursorLeft = 47;
                             Console.ForegroundColor = ConsoleColor.Green;
                             Console.WriteLine($"Current Balance: ${myVendingMachine.Transaction.Balance}"); // gets customer balance and displays
                             Console.ForegroundColor = ConsoleColor.White;
                             Console.WriteLine();
-                            Console.CursorLeft = 60;
+                            Console.CursorLeft = 55;
+                            Console.Write("$ ");
                             string moneyAdded = Console.ReadLine(); // Where money is entered
                             Console.WriteLine();
                             if ((moneyAdded == "1") || (moneyAdded == "2") || (moneyAdded == "5") || (moneyAdded == "10"))
                             {
-                                Console.CursorLeft = 55;
+                                Console.CursorLeft = 53;
                                 Console.WriteLine("Thank you!");
                                 myVendingMachine.Transaction.FeedMoney(decimal.Parse(moneyAdded)); // Adds money to transaction if correct $ amount
                                 Console.ReadLine();
@@ -213,7 +214,7 @@ namespace Capstone
                                             Console.WriteLine();
                                             Console.WriteLine();
                                             Console.WriteLine();
-                                            Console.ForegroundColor = ConsoleColor.Cyan;                                           
+                                            Console.ForegroundColor = ConsoleColor.Yellow;                                           
                                             Console.WriteLine(FiggleFonts.Standard.Render("   Please add more money"));
                                             Console.WriteLine();
                                             Console.WriteLine();
@@ -314,7 +315,7 @@ namespace Capstone
                                             Console.WriteLine();
                                             Console.WriteLine();
                                             Console.WriteLine();
-                                            Console.ForegroundColor = ConsoleColor.Cyan;
+                                            Console.ForegroundColor = ConsoleColor.Yellow;
                                             Console.WriteLine(FiggleFonts.Standard.Render("   Please add more money"));
                                             Console.WriteLine();
                                             Console.WriteLine();
@@ -416,7 +417,7 @@ namespace Capstone
                                             Console.WriteLine();
                                             Console.WriteLine();
                                             Console.WriteLine();
-                                            Console.ForegroundColor = ConsoleColor.Cyan;
+                                            Console.ForegroundColor = ConsoleColor.Yellow;
                                             Console.WriteLine(FiggleFonts.Standard.Render("   Please add more money"));
                                             Console.WriteLine();
                                             Console.WriteLine();
@@ -518,7 +519,7 @@ namespace Capstone
                                             Console.WriteLine();
                                             Console.WriteLine();
                                             Console.WriteLine();
-                                            Console.ForegroundColor = ConsoleColor.Cyan;
+                                            Console.ForegroundColor = ConsoleColor.Yellow;
                                             Console.WriteLine(FiggleFonts.Standard.Render("   Please add more money"));
                                             Console.WriteLine();
                                             Console.WriteLine();
@@ -595,6 +596,8 @@ namespace Capstone
                         Console.ForegroundColor = ConsoleColor.Green;
                         string ending = FiggleFonts.Tombstone.Render("Thanks for giving us your money!"); //Creates ending text
                         Console.WriteLine(ending);
+                        Console.ForegroundColor = ConsoleColor.Black;
+
                         return;
                     }
                     else if (userSelection == "4")
