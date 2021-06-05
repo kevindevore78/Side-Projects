@@ -17,15 +17,22 @@ namespace Capstone.Classes
         /// </summary>
         public VendingMachine()
         {
-            string filePath = Logger.logFile;
+            string logFilePath = Logger.logFile;
+            string salesReportFilePath = Logger.salesReportFile;
+            string tempSalerReportFilePath = Logger.tempSalesReportFile;
             try
             {
-                using(StreamWriter writer = new StreamWriter(filePath, true)) { }
+                using (StreamWriter logFileWriter = new StreamWriter(logFilePath, true))
+                using (StreamWriter salesReportWriter = new StreamWriter(salesReportFilePath, true))
+                using (StreamWriter tempSalesReportWriter = new StreamWriter(tempSalerReportFilePath)) { }
+
             }
             catch
             {
                 Console.WriteLine("Failed to create a log file.");
             }
+
+
         }
 
         /// <summary>
