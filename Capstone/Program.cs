@@ -189,11 +189,14 @@ namespace Capstone
                                         bool saleMade = myVendingMachine.Vend(itemSelection);
                                         if (saleMade == true) // If sale is made
                                         {
-                                            Console.Clear();                                           
+                                            Console.Clear();
                                             Console.WriteLine();
                                             Console.WriteLine();
                                             Console.WriteLine();
                                             Console.WriteLine();
+                                            string yumHeader = FiggleFonts.Standard.Render("                            Crunch Yum!!!!");
+                                            Console.ForegroundColor = ConsoleColor.Green;
+                                            Console.WriteLine(yumHeader);
                                             Console.ForegroundColor = ConsoleColor.Yellow;
                                             Console.CursorLeft = 25;
                                             Console.WriteLine(myVendingMachine.Stock[itemSelection].Product.Name + "   " + "" + " Price: $" + myVendingMachine.Stock[itemSelection].Product.Price + "    " + "Remaining balance: $" + myVendingMachine.Transaction.Balance + "   " + myVendingMachine.Stock[itemSelection].Product.Sound());
@@ -216,7 +219,7 @@ namespace Capstone
                                             Console.WriteLine();
                                             Console.WriteLine();
                                             Console.WriteLine();
-                                            Console.ForegroundColor = ConsoleColor.Yellow;                                           
+                                            Console.ForegroundColor = ConsoleColor.Yellow;
                                             Console.WriteLine(FiggleFonts.Standard.Render("   Please add more money"));
                                             Console.WriteLine();
                                             Console.WriteLine();
@@ -247,7 +250,8 @@ namespace Capstone
                                         Console.ReadLine();
                                         Console.Clear();
                                     }
-                                }Console.Clear();
+                                }
+                                Console.Clear();
                             }
                             else if (productSelection == "2")
                             {
@@ -295,6 +299,9 @@ namespace Capstone
                                             Console.WriteLine();
                                             Console.WriteLine();
                                             Console.WriteLine();
+                                            string yumHeader = FiggleFonts.Standard.Render("                             Munch Yum!!!!");
+                                            Console.ForegroundColor = ConsoleColor.Green;
+                                            Console.WriteLine(yumHeader);
                                             Console.ForegroundColor = ConsoleColor.Yellow;
                                             Console.CursorLeft = 25;
                                             Console.WriteLine(myVendingMachine.Stock[itemSelection].Product.Name + "   " + "" + " Price: $" + myVendingMachine.Stock[itemSelection].Product.Price + "    " + "Remaining balance: $" + myVendingMachine.Transaction.Balance + "   " + myVendingMachine.Stock[itemSelection].Product.Sound());
@@ -397,6 +404,9 @@ namespace Capstone
                                             Console.WriteLine();
                                             Console.WriteLine();
                                             Console.WriteLine();
+                                            string yumHeader = FiggleFonts.Standard.Render("                                 Glug Yum!!!!");
+                                            Console.ForegroundColor = ConsoleColor.Green;
+                                            Console.WriteLine(yumHeader);
                                             Console.ForegroundColor = ConsoleColor.Yellow;
                                             Console.CursorLeft = 25;
                                             Console.WriteLine(myVendingMachine.Stock[itemSelection].Product.Name + "   " + "" + " Price: $" + myVendingMachine.Stock[itemSelection].Product.Price + "    " + "Remaining balance: $" + myVendingMachine.Transaction.Balance + "   " + myVendingMachine.Stock[itemSelection].Product.Sound());
@@ -499,6 +509,9 @@ namespace Capstone
                                             Console.WriteLine();
                                             Console.WriteLine();
                                             Console.WriteLine();
+                                            string yumHeader = FiggleFonts.Standard.Render("                                 Chew Yum!!!!");
+                                            Console.ForegroundColor = ConsoleColor.Green;
+                                            Console.WriteLine(yumHeader);
                                             Console.ForegroundColor = ConsoleColor.Yellow;
                                             Console.CursorLeft = 25;
                                             Console.WriteLine(myVendingMachine.Stock[itemSelection].Product.Name + "   " + "" + " Price: $" + myVendingMachine.Stock[itemSelection].Product.Price + "    " + "Remaining balance: $" + myVendingMachine.Transaction.Balance + "   " + myVendingMachine.Stock[itemSelection].Product.Sound());
@@ -557,7 +570,7 @@ namespace Capstone
                             }
                             else if (productSelection == "5")
                             {
-                             
+
                                 //return to purchasing menu
                             }
                         }
